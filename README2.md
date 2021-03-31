@@ -2,7 +2,16 @@
 
 This is the backend for the Flask React project.
 
-## Important Links
+## Important Links/Resources
+
+- s3 image upload with flask
+    - https://hackmd.io/@jpshafto/SyWY45KGu
+- flask sql alchemy quick reference
+    - https://hackmd.io/@jpshafto/H1VbmP3yO
+- flask sql alchemy cheat sheet
+    - https://hackmd.io/@jpshafto/H1VbmP3yO
+- sequelize cheatsheet 
+    - https://github.com/appacademy/JSPYAdditionalNotes/blob/master/w10/sequelize_cheatsheet.md
 
 ## Getting started
 
@@ -11,6 +20,7 @@ This is the backend for the Flask React project.
    ```bash
    git clone https://github.com/appacademy-starters/python-project-starter.git
    ```
+   express clone available here: https://files.slack.com/files-pri/T03GU501J-F01SA4J7JGP/download/react-express-starter.zip
 
 2. Install dependencies
 
