@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { Drawer } from "@material-ui/core";
 import NavbarNoAuth from "./NavbarNoAuth";
 import "./Navbar.css";
@@ -11,6 +12,10 @@ const Navbar = () => {
       <button className="navbar__hamburger" onClick={(e) => setHamburger(true)}>
         <i className="fa fa-bars fa-7x"></i>
       </button>
+      <Link to="/landing" className="navbar__logo">
+        <img src="logo.png" alt="Holland Running logo" />
+      </Link>
+      <div></div>
       <Drawer
         anchor="left"
         open={hamburger}

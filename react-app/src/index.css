@@ -3,6 +3,7 @@
 
 /* color scheme */
 :root {
+  --color-0: rgb(35, 49, 75);
   --color-1: #0278ae;
   --color-2: #51adcf;
   --color-3: #a5ecd7;
