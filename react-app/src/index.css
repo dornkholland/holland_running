@@ -1,1 +1,25 @@
-/* TODO Add site wide styles */
+/*sitewide styles */
+@import "reset.css";
+
+/* color scheme */
+:root {
+  --color-0: rgb(35, 49, 75);
+  --color-1: #0278ae;
+  --color-2: #51adcf;
+  --color-3: #a5ecd7;
+  --color-4: #e8ffc1;
+}
+
+/*font setup globally */
+@import url("https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap");
+
+html,
+body,
+form,
+fieldset,
+table,
+tr,
+td,
+img {
+  font-family: "Merriweather", calibri, helvetica, sans-serif;
+}
