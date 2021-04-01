@@ -10,7 +10,7 @@ const Navbar = () => {
   return (
     <div className="navbar">
       <button className="navbar__hamburger" onClick={(e) => setHamburger(true)}>
-        <i className="fa fa-bars fa-7x"></i>
+        <i className="fa fa-bars"></i>
       </button>
       <Link to="/landing" className="navbar__logo">
         <img src="logo.png" alt="Holland Running logo" />
