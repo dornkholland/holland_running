@@ -22,7 +22,7 @@ export const authenticate = () => async (dispatch) => {
     },
   });
   const data = await response.json();
-  console.log(data)
+  console.log(data);
   if (!data.errors) {
     dispatch(setUser(data));
   }
@@ -33,7 +33,7 @@ export const authenticate = () => async (dispatch) => {
 export const signup = (first_name, last_name, email, password) => async (
   dispatch
 ) => {
-  const response = await fetch("/api/auth/signup", {
+  const response = await fetch("/api/auth/signup/", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -55,7 +55,7 @@ export const signup = (first_name, last_name, email, password) => async (
 //login user thunk action
 export const login = (email, password) => async (dispatch) => {
   console.log(email, password);
-  const response = await fetch("/api/auth/login", {
+  const response = await fetch("/api/auth/login/", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -66,7 +66,7 @@ export const login = (email, password) => async (dispatch) => {
     }),
   });
   const data = await response.json();
-  console.log(data)
+  console.log(data);
   if (!data.errors) {
     dispatch(setUser(data));
   }
@@ -75,7 +75,7 @@ export const login = (email, password) => async (dispatch) => {
 
 //logout user thunk action
 export const logout = () => async (dispatch) => {
-  const response = await fetch("/api/auth/logout", {
+  const response = await fetch("/api/auth/logout/", {
     headers: {
       "Content-Type": "application/json",
     },
