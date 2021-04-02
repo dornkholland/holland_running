@@ -1,4 +1,4 @@
-.navbar {
+.navbarr {
   z-index: 1;
   background-color: var(--color-0);
   display: grid;
@@ -47,6 +47,14 @@
   border: none;
 }
 
+.form__element {
+  display: flex;
+  flex-direction: column;
+}
+.form__element label {
+  font-size: 20px;
+}
+
 /* Modal Stylings */
 
 .overlay {
@@ -60,6 +68,8 @@
 
 .modal {
   position: absolute;
+  min-width: 500px;
+  min-height: 400px;
   top: 75px;
   left: 400px;
   right: 400px;

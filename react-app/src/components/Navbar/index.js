@@ -30,7 +30,7 @@ const Navbar = () => {
   }
 
   return (
-    <div className="navbar">
+    <div className="navbarr">
       <button className="navbar__hamburger" onClick={(e) => setHamburger(true)}>
         <i className="fa fa-bars"></i>
       </button>
