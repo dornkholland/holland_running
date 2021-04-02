@@ -115,6 +115,7 @@ menu,
 nav,
 section {
   display: block;
+  box-sizing: border-box;
 }
 body {
   line-height: 1;
@@ -148,4 +149,5 @@ option {
   font-size: inherit;
   font-style: inherit;
   font-weight: inherit;
+  box-sizing: border-box;
 }

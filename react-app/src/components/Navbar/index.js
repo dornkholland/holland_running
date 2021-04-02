@@ -39,7 +39,10 @@ const Navbar = () => {
         <i className="fa fa-bars"></i>
       </button>
       <Link to="/landing" className="navbar__logo">
-        <img src="logo.png" alt="Holland Running logo" />
+        <img
+          src={`${process.env.PUBLIC_URL}/assets/logo.png`}
+          alt="Holland Running logo"
+        />
       </Link>
       <div></div>
       <Drawer

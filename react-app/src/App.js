@@ -24,7 +24,7 @@ function App() {
     <BrowserRouter>
       <Navbar />
       <Switch>
-        {/*test routs begin here*/}g {/*test routs end here*/}
+        {/*test routs begin here*/} {/*test routs end here*/}
         <Route path="/" exact={true}>
           <Landing />
         </Route>

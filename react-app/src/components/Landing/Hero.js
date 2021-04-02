@@ -4,7 +4,10 @@ const Hero = () => {
   return (
     <div className="hero">
       <video autoPlay muted loop className="hero__video">
-        <source src="landing.mp4" type="video/mp4" />
+        <source
+          src={`${process.env.PUBLIC_URL}/assets/landing.mp4`}
+          type="video/mp4"
+        />
       </video>
       <div className="hero__cover"></div>
       <div className="hero__content">
