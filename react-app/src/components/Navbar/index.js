@@ -2,15 +2,19 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Drawer } from "@material-ui/core";
 import NavbarNoAuth from "./NavbarNoAuth";
+import NavbarAuth from "./NavbarAuth";
 import Modal from "react-modal";
 import "./Navbar.css";
 import SignUpForm from "../auth/SignUpForm";
 import LoginForm from "../auth/LoginForm";
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
   const [hamburger, setHamburger] = useState(false);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [signupLogin, setSignupLogin] = useState("");
+
+  const user = useSelector((state) => state.auth.user);
 
   Modal.setAppElement(document.getElementById("root"));
 
@@ -45,11 +49,15 @@ const Navbar = () => {
         className="navbar__drawer"
       >
         <nav className="navbar__nav">
-          <NavbarNoAuth
-            setHamburger={setHamburger}
-            setModalIsOpen={setModalIsOpen}
-            setSignupLogin={setSignupLogin}
-          />
+          {!user ? (
+            <NavbarNoAuth
+              setHamburger={setHamburger}
+              setModalIsOpen={setModalIsOpen}
+              setSignupLogin={setSignupLogin}
+            />
+          ) : (
+            <NavbarAuth setHamburger={setHamburger} />
+          )}
         </nav>
       </Drawer>
       <Modal

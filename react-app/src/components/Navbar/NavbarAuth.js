@@ -1,15 +1,20 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Redirect } from "react-router-dom";
 import LogoutButton from "../auth/LogoutButton";
+import { logout } from "../../store/auth";
+import { useDispatch } from "react-redux";
 
-const NavbarAuth = ({ setHamburger, setModalIsOpen }) => {
+const NavbarAuth = ({ setHamburger }) => {
+  const dispatch = useDispatch();
+
   const closeHamburger = () => {
     setHamburger(false);
   };
 
-  const openModal = () => {
+  const handleLogout = async () => {
     closeHamburger();
-    setModalIsOpen(true);
+    await dispatch(logout());
+    Redirect("/");
   };
 
   return (
@@ -25,14 +30,14 @@ const NavbarAuth = ({ setHamburger, setModalIsOpen }) => {
         </NavLink>
       </li>
       <li>
-        <NavLink
+        <button
           to="/"
-          onClick={closeHamburger}
+          onClick={handleLogout}
           exact={true}
           activeClassName="active"
         >
           Log Out
-        </NavLink>
+        </button>
       </li>
       {/*      <li>
         <button
