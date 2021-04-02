@@ -16,16 +16,17 @@ const removeUser = () => {
 
 //restore auth user thunk action
 export const authenticate = () => async (dispatch) => {
-  const response = await fetch("/api/auth", {
+  const response = await fetch("/api/auth/", {
     headers: {
       "Content-Type": "application/json",
     },
   });
   const data = await response.json();
+  console.log(data)
   if (!data.errors) {
     dispatch(setUser(data));
   }
-  return response;
+  return data;
 };
 
 //signup user thunk action
@@ -65,6 +66,7 @@ export const login = (email, password) => async (dispatch) => {
     }),
   });
   const data = await response.json();
+  console.log(data)
   if (!data.errors) {
     dispatch(setUser(data));
   }

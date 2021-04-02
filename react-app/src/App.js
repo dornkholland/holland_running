@@ -15,13 +15,9 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    (async () => {
-      const user = await dispatch(authenticate());
-      console.log(user);
-      if (!user.errors) {
-      }
-      setLoaded(true);
-    })();
+      dispatch(authenticate()).then((user) => {setLoaded(true)
+        user.errors || setAuthenticated(true)
+      })
   }, []);
 
   if (!loaded) {
