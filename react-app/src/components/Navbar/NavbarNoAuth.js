@@ -2,23 +2,57 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import LogoutButton from "../auth/LogoutButton";
 
-const NavbarNoAuth = ({ setAuthenticated }) => {
+const NavbarNoAuth = ({ setHamburger, setModalIsOpen, setSignupLogin }) => {
+  const closeHamburger = () => {
+    setHamburger(false);
+  };
+
+  const openModal = () => {
+    closeHamburger();
+    setModalIsOpen(true);
+  };
+
+  const handleSignup = () => {
+    openModal();
+    setSignupLogin("signup");
+  };
+
+  const handleLogin = () => {
+    openModal();
+    setSignupLogin("login");
+  };
+
   return (
     <ul>
       <li>
-        <NavLink to="/" exact={true} activeClassName="active">
+        <NavLink
+          to="/"
+          onClick={closeHamburger}
+          exact={true}
+          activeClassName="active"
+        >
           Home
         </NavLink>
       </li>
       <li>
-        <NavLink to="/login" exact={true} activeClassName="active">
+        <button
+          to="/login"
+          onClick={handleLogin}
+          exact={true}
+          activeClassName="active"
+        >
           Login
-        </NavLink>
+        </button>
       </li>
       <li>
-        <NavLink to="/sign-up" exact={true} activeClassName="active">
+        <button
+          to="/sign-up"
+          onClick={handleSignup}
+          exact={true}
+          activeClassName="active"
+        >
           Sign Up
-        </NavLink>
+        </button>
       </li>
     </ul>
   );

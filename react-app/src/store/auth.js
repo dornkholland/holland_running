@@ -16,9 +16,15 @@ const removeUser = () => {
 
 //restore auth user thunk action
 export const authenticate = () => async (dispatch) => {
-  const response = await fetch("/api/auth");
+  const response = await fetch("/api/auth", {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
   const data = await response.json();
-  dispatch(setUser(data));
+  if (!data.errors) {
+    dispatch(setUser(data));
+  }
   return response;
 };
 
@@ -39,21 +45,29 @@ export const signup = (first_name, last_name, email, password) => async (
     }),
   });
   const data = await response.json();
-  dispatch(setUser(data));
+  if (!data.errors) {
+    dispatch(setUser(data));
+  }
   return response;
 };
 
 //login user thunk action
 export const login = (email, password) => async (dispatch) => {
+  console.log(email, password);
   const response = await fetch("/api/auth/login", {
     method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
     body: JSON.stringify({
       email,
       password,
     }),
   });
   const data = await response.json();
-  dispatch(setUser(data));
+  if (!data.errors) {
+    dispatch(setUser(data));
+  }
   return data;
 };
 
