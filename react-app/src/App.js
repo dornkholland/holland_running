@@ -57,9 +57,9 @@ function App() {
         >
           <User />
         </ProtectedRoute>
-        <ProtectedRoute path="/" exact={true}>
+        <Route path="/" exact={true}>
           <Landing />
-        </ProtectedRoute>
+        </Route>
         {/*<ProtectedRoute path="/" exact={true} authenticated={authenticated}>
           <h1>My Home Page</h1>
         </ProtectedRoute>*/}

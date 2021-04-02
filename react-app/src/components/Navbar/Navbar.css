@@ -29,7 +29,7 @@
   margin-right: 80px;
 }
 
-/* Menu stylings */
+/* navbar content*/
 
 .navbar__nav {
   padding: 10px;
@@ -41,4 +41,35 @@
 .navbar__nav li {
   margin: 25px 10px;
   font-size: 30px;
+}
+
+.navbar__nav button {
+  border: none;
+}
+
+/* Modal Stylings */
+
+.overlay {
+  background-color: rgba(0, 0, 0, 0.8);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.modal {
+  position: absolute;
+  top: 75px;
+  left: 400px;
+  right: 400px;
+  bottom: 75px;
+  background-color: var(--color-3);
+}
+
+.modal i {
+  font-size: 30px;
+}
+.modal button {
+  border: none;
 }
