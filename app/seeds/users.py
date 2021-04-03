@@ -6,8 +6,11 @@ def seed_users():
 
     demo = User(first_name='demo', last_name='user', email='demo@user.com',
                 hashed_password=generate_password_hash('password'), role='user')
+    owner = User(first_name='demo', last_name='owner', email='demo@owner.com',
+                hashed_password=generate_password_hash('password'), role='owner')
 
     db.session.add(demo)
+    db.session.add(owner)
 
     db.session.commit()
 
