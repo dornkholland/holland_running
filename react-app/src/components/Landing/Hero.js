@@ -1,13 +1,11 @@
 import React from "react";
+import video from "./landing.mp4";
 
 const Hero = () => {
   return (
     <div className="hero">
       <video autoPlay muted loop className="hero__video">
-        <source
-          src={`${process.env.PUBLIC_URL}/assets/landing.mp4`}
-          type="video/mp4"
-        />
+        <source src={video} type="video/mp4" />
       </video>
       <div className="hero__cover"></div>
       <div className="hero__content">
