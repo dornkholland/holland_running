@@ -3,7 +3,7 @@ import { Redirect } from "react-router-dom";
 import { login } from "../../store/auth";
 import { useDispatch } from "react-redux";
 
-const LoginForm = () => {
+const LoginForm = ({ setModalIsOpen }) => {
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -14,6 +14,7 @@ const LoginForm = () => {
     const user = await dispatch(login(email, password));
     if (!user.errors) {
       // setAuthenticated(true);
+      setModalIsOpen(false);
       Redirect("/");
     } else {
       setErrors(user.errors);

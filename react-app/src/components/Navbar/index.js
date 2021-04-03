@@ -71,7 +71,11 @@ const Navbar = () => {
         <button onClick={closeModal} className="modal--minimize">
           <i class="fa fa-window-minimize"></i>
         </button>
-        {signupLogin === "signup" ? <SignUpForm /> : <LoginForm />}
+        {signupLogin === "signup" ? (
+          <SignUpForm setModalIsOpen={setModalIsOpen} />
+        ) : (
+          <LoginForm setModalIsOpen={setModalIsOpen} />
+        )}
       </Modal>
     </div>
   );

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
 import { signUp } from "../../services/auth";
 
-const SignUpForm = () => {
+const SignUpForm = ({ setModalIsOpen }) => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -15,6 +15,7 @@ const SignUpForm = () => {
       const user = await signUp(firstName, lastName, email, password);
       if (!user.errors) {
         //setAuthenticated(true);
+        setModalIsOpen(false);
       }
     }
   };
