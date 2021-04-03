@@ -1,8 +1,11 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import LogoutButton from "../auth/LogoutButton";
+import { useDispatch } from "react-redux";
+import { login } from "../../store/auth";
 
 const NavbarNoAuth = ({ setHamburger, setModalIsOpen, setSignupLogin }) => {
+  const dispatch = useDispatch();
   const closeHamburger = () => {
     setHamburger(false);
   };
@@ -22,6 +25,16 @@ const NavbarNoAuth = ({ setHamburger, setModalIsOpen, setSignupLogin }) => {
     setSignupLogin("login");
   };
 
+  const handleDemo = () => {
+    closeHamburger();
+    dispatch(login("demo@user.com", "password"));
+  };
+
+  const handleOwner = () => {
+    closeHamburger();
+    dispatch(login("demo@owner.com", "password"));
+  };
+
   return (
     <ul>
       <li>
@@ -35,23 +48,20 @@ const NavbarNoAuth = ({ setHamburger, setModalIsOpen, setSignupLogin }) => {
         </NavLink>
       </li>
       <li>
-        <button
-          to="/login"
-          onClick={handleLogin}
-          exact={true}
-          activeClassName="active"
-        >
-          Login
-        </button>
+        <button onClick={handleLogin}>Login</button>
       </li>
       <li>
-        <button
-          to="/sign-up"
-          onClick={handleSignup}
-          exact={true}
-          activeClassName="active"
-        >
-          Sign Up
+        <button onClick={handleSignup}>Sign Up</button>
+      </li>
+      <li>
+        <button onClick={handleDemo} activeClassName="active">
+          Demo User
+        </button>
+      </li>
+
+      <li>
+        <button onClick={handleOwner} activeClassName="active">
+          Demo Owner
         </button>
       </li>
     </ul>

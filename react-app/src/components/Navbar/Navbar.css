@@ -6,6 +6,14 @@
   padding: 0 10px;
   justify-content: space-between;
   align-items: center;
+  position: fixed;
+  width: 100vw;
+  height: 110px;
+}
+
+.navbar__buffer {
+  height: 110px;
+  background-color: black;
 }
 
 .navbar__hamburger {
