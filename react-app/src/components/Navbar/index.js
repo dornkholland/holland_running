@@ -67,7 +67,8 @@ const Navbar = () => {
         className="modal"
         overlayClassName="overlay"
       >
-        <button onClick={closeModal}>
+        <img src={logo} alt="Holland Running logo" />
+        <button onClick={closeModal} className="modal--minimize">
           <i class="fa fa-window-minimize"></i>
         </button>
         {signupLogin === "signup" ? <SignUpForm /> : <LoginForm />}
