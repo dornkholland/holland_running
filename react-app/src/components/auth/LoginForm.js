@@ -3,7 +3,7 @@ import { Redirect } from "react-router-dom";
 import { login } from "../../store/auth";
 import { useDispatch } from "react-redux";
 
-const LoginForm = () => {
+const LoginForm = ({ setModalIsOpen }) => {
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -14,6 +14,7 @@ const LoginForm = () => {
     const user = await dispatch(login(email, password));
     if (!user.errors) {
       // setAuthenticated(true);
+      setModalIsOpen(false);
       Redirect("/");
     } else {
       setErrors(user.errors);
@@ -39,7 +40,7 @@ const LoginForm = () => {
           <div>{error}</div>
         ))}
       </div>
-      <div>
+      <div className="form__element">
         <label htmlFor="email">Email</label>
         <input
           name="email"
@@ -49,7 +50,7 @@ const LoginForm = () => {
           onChange={updateEmail}
         />
       </div>
-      <div>
+      <div className="form__element">
         <label htmlFor="password">Password</label>
         <input
           name="password"
@@ -58,7 +59,9 @@ const LoginForm = () => {
           value={password}
           onChange={updatePassword}
         />
-        <button type="submit">Login</button>
+        <button className="form__button" type="submit">
+          Login
+        </button>
       </div>
     </form>
   );
