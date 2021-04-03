@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import Navbar from "./components/Navbar";
+import NavbarBuffer from "./components/Navbar/NavbarBuffer";
 import Landing from "./components/Landing";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import { authenticate } from "./store/auth";
@@ -23,6 +24,7 @@ function App() {
   return (
     <BrowserRouter>
       <Navbar />
+      <NavbarBuffer />
       <Switch>
         {/*test routs begin here*/} {/*test routs end here*/}
         <Route path="/" exact={true}>
