@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import Navbar from "./components/Navbar";
 import NavbarBuffer from "./components/Navbar/NavbarBuffer";
 import Landing from "./components/Landing";
+import UploadVideo from "./components/Video/UploadVideo";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import { authenticate } from "./store/auth";
 
@@ -26,7 +27,11 @@ function App() {
       <Navbar />
       <NavbarBuffer />
       <Switch>
-        {/*test routs begin here*/} {/*test routs end here*/}
+        {/*test routs begin here*/}
+        <Route path="/upload-video">
+          <UploadVideo />
+        </Route>
+        {/*test routs end here*/}
         <Route path="/" exact={true}>
           <Landing />
         </Route>
