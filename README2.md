@@ -6,6 +6,8 @@ This is the backend for the Flask React project.
 
 - s3 image upload with flask
     - https://hackmd.io/@jpshafto/SyWY45KGu
+- s3 with express
+    - https://github.com/jamesurobertson/aws-s3-pern-demo#create-your-aws-user-and-bucket
 - flask sql alchemy quick reference
     - https://hackmd.io/@jpshafto/H1VbmP3yO
 - flask sql alchemy cheat sheet
