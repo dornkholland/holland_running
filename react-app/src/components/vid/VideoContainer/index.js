@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { Redirect, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getVideos } from "../../../store/video";
+import VideoLink from "./VideoLink";
 
 const VideoContainer = () => {
   const dispatch = useDispatch();
@@ -37,6 +38,13 @@ const VideoContainer = () => {
       <div>
         <h1>{videoObj[videoType].title}</h1>
         <h2>{videoObj[videoType].description}</h2>
+        <ul>
+          {Object.entries(videos).map((video) => (
+            <li>
+              <VideoLink key={video[0]} video={video[1]} />
+            </li>
+          ))}
+        </ul>
       </div>
     );
   }

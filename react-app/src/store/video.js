@@ -9,7 +9,6 @@ const loadVideos = (videos) => {
 };
 
 export const getVideos = (type) => async (dispatch) => {
-  console.log(type);
   const response = await fetch(`/api/videos/${type}/`, {
     headers: {
       "Content-Type": "application/json",
@@ -17,7 +16,7 @@ export const getVideos = (type) => async (dispatch) => {
   });
   const data = await response.json();
   if (!data.errors) {
-    dispatch(loadVideos(data));
+    dispatch(loadVideos(data.videos));
   }
   return data;
 };
@@ -28,7 +27,7 @@ const videoReducer = (state = initialState, action) => {
   let newState = JSON.parse(JSON.stringify(state));
   switch (action.type) {
     case LOAD_VIDEOS:
-      console.log(action.payload);
+      newState = action.payload;
       return newState;
     default:
       return state;
