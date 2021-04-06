@@ -1,10 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Redirect, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getVideos } from "../../../store/video";
 import VideoLink from "./VideoLink";
 
 const VideoContainer = () => {
+  const [isLoaded, setIsLoaded] = useState(false);
   const dispatch = useDispatch();
   const videoObj = {
     recordings: {
@@ -28,11 +29,13 @@ const VideoContainer = () => {
 
   const videos = useSelector((state) => state.video);
 
-  useEffect(() => {
-    dispatch(getVideos(videoType));
-  }, []);
+  useEffect(async () => {
+    await dispatch(getVideos(videoType));
+    setIsLoaded(true);
+  }, [dispatch]);
 
   if (!videoObj[videoType]) return <Redirect to="/" />;
+  else if (!isLoaded) return null;
   else {
     return (
       <div>
@@ -40,8 +43,8 @@ const VideoContainer = () => {
         <h2>{videoObj[videoType].description}</h2>
         <ul>
           {Object.entries(videos).map((video) => (
-            <li>
-              <VideoLink key={video[0]} video={video[1]} />
+            <li key={video[0]}>
+              <VideoLink video={video[1]} />
             </li>
           ))}
         </ul>

@@ -1,6 +1,0 @@
-const VideoLink = ({video}) => {
-    return (
-        <h1>{video.name}</h1>
-        <h2>{video.description}</h2>
-    )
-}

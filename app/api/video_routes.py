@@ -44,6 +44,20 @@ def upload_video():
     db.session.commit()
     return {"url": url}
 
+
+@video_routes.route ("/<videoId>/byId")
+@login_required
+def get_video(videoId):
+    user = current_user.to_dict()
+    premium = False
+    if user["role"] == "owner":
+        premium = True
+    video = Video.query.filter(Video.id == videoId).one()
+    if premium or video.demo:
+        return {"video": video.to_dict()}
+    else:
+        return {"errors": "not authorized"}, 401
+
 @video_routes.route ("/<videoType>/")
 @login_required
 def get_videos(videoType):
@@ -54,6 +68,5 @@ def get_videos(videoType):
     videos = Video.query.filter(Video.type == videoType).filter(Video.demo == demo).all()
     returnObj = {}
     for video in videos:
-        print(video.createdAt)
         returnObj[video.id] = video.to_dict()
     return {"videos":returnObj}
