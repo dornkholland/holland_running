@@ -50,5 +50,8 @@ def get_videos(videoType):
     demo = True
     if user["role"] == "owner":
         demo = False
-    videos = Video.query.filter(Video.type == videoType and Video.demo == demo)
-    return "made it"
+    videos = Video.query.filter(Video.type == videoType).filter(Video.demo == demo).all()
+    returnObj = {}
+    for video in videos:
+        returnObj[video.id] = video.to_dict()
+    return {"videos":returnObj}
