@@ -42,3 +42,13 @@ def upload_video():
     db.session.add(new_video)
     db.session.commit()
     return {"url": url}
+
+@video_routes.route ("/<videoType>/")
+@login_required
+def get_videos(videoType):
+    user = current_user.to_dict()
+    demo = True
+    if user["role"] == "owner":
+        demo = False
+    videos = Video.query.filter(Video.type == videoType and Video.demo == demo)
+    return "made it"

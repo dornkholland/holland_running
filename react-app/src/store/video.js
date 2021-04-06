@@ -10,7 +10,7 @@ const loadVideos = (videos) => {
 
 export const getVideos = (type) => async (dispatch) => {
   console.log(type);
-  const response = await fetch(`/api/videos/${type}`, {
+  const response = await fetch(`/api/videos/${type}/`, {
     headers: {
       "Content-Type": "application/json",
     },

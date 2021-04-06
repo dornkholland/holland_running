@@ -12,3 +12,12 @@ class Video(db.Model):
   demo = db.Column(db.Boolean(), nullable = False)
 
 
+  def to_dict(self):
+    return {
+      "id": self.id,
+      "url": self.url,
+      "type": self.type,
+      "name": self.name,
+      "description": self.description,
+      "demo": self.demo,
+    }
