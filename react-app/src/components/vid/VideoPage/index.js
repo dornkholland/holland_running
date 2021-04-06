@@ -27,7 +27,7 @@ const VideoPage = () => {
     return (
       <div>
         <h1>{video.name}</h1>
-        <video src={video.url}></video>
+        <video src={video.url} controls></video>
       </div>
     );
   }
