@@ -1,9 +1,10 @@
-import React, { useState } from "react";
-import { Redirect } from "react-router-dom";
-import { useHistory, useParams } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Redirect, useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { getVideos } from "../../../store/video";
 
 const VideoContainer = () => {
-  const history = useHistory();
+  const dispatch = useDispatch();
   const videoObj = {
     recordings: {
       title: "Past Zoom Class Recordings",
@@ -21,9 +22,14 @@ const VideoContainer = () => {
         "Here you'll find all other educational/informational content that I decide to put out.  If you're wondering what running shoes to get or maybe some tips on avoiding injuries, you've come to the right place.",
     },
   };
-  const [isLoaded, setIsLoaded] = useState(false);
 
   const { videoType } = useParams();
+
+  const videos = useSelector((state) => state.video);
+
+  useEffect(() => {
+    dispatch(getVideos(videoType));
+  }, []);
 
   if (!videoObj[videoType]) return <Redirect to="/" />;
   else {
