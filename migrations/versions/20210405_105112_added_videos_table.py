@@ -25,6 +25,7 @@ def upgrade():
     sa.Column('name', sa.String(length=255), nullable=False),
     sa.Column('description', sa.String(length=5000), nullable=False),
     sa.Column('demo', sa.Boolean(), nullable=False),
+    sa.Column('date', sa.Date(), nullable=False),
     sa.PrimaryKeyConstraint('id')
     )
     # ### end Alembic commands ###

@@ -4,6 +4,7 @@ from flask_login import current_user, login_required
 from app.forms import VideoForm
 from app.s3_helpers import (
     upload_file_to_s3, allowed_file, get_unique_filename)
+from datetime import date
 
 video_routes = Blueprint("videos", __name__)
 
@@ -37,7 +38,7 @@ def upload_video():
     url = upload["url"]
     # flask_login allows us to get the current user from the request
 
-    new_video = Video(url=url)
+    new_video = Video(url=url, date=date.today())
     form.populate_obj(new_video)
     db.session.add(new_video)
     db.session.commit()
@@ -53,5 +54,6 @@ def get_videos(videoType):
     videos = Video.query.filter(Video.type == videoType).filter(Video.demo == demo).all()
     returnObj = {}
     for video in videos:
+        print(video.createdAt)
         returnObj[video.id] = video.to_dict()
     return {"videos":returnObj}
