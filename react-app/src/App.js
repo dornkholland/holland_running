@@ -5,7 +5,7 @@ import Navbar from "./components/Navbar";
 import NavbarBuffer from "./components/Navbar/NavbarBuffer";
 import Landing from "./components/Landing";
 import UploadVideo from "./components/vid/VideoForm";
-import Video from "./components/vid/VideoContainer";
+import VideoContainer from "./components/vid/VideoContainer";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import { authenticate } from "./store/auth";
 
@@ -37,7 +37,7 @@ function App() {
           <Landing />
         </Route>
         <ProtectedRoute path="/videos/:videoType">
-          <Video />
+          <VideoContainer />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>

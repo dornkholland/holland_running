@@ -22,8 +22,8 @@ const VideoForm = () => {
     setDescription(e.target.value);
   };
 
-  const updateDemo = (e) => {
-    setDemo(e.target.value);
+  const updateDemo = () => {
+    setDemo(!demo);
   };
 
   const handleSubmit = async (e) => {
@@ -59,8 +59,8 @@ const VideoForm = () => {
   return (
     <form onSubmit={handleSubmit} id="uploadVideoForm">
       <select name="type" onChange={updateType} value={type}>
-        <option value="recording">Class Recording</option>
-        <option value="run">Training Run</option>
+        <option value="recordings">Class Recording</option>
+        <option value="runs">Training Run</option>
         <option value="info">Informational Video</option>
       </select>
       <div className="form__element">
@@ -83,7 +83,7 @@ const VideoForm = () => {
           type="checkbox"
           value={demo}
           checked={demo}
-          onChange={updateDescription}
+          onChange={updateDemo}
         />
       </div>
       <input type="file" accept="video/*" onChange={updateVideo} />

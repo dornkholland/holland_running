@@ -50,6 +50,16 @@ const NavbarAuth = ({ setHamburger }) => {
         </NavLink>
       </li>
       <li>
+        <NavLink
+          to="/videos/info"
+          onClick={closeHamburger}
+          exact={true}
+          activeClassName="active"
+        >
+          Informational Content
+        </NavLink>
+      </li>
+      <li>
         <button onClick={handleLogout} activeClassName="active">
           Log Out
         </button>
