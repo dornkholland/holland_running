@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 
-const UploadVideo = () => {
+const VideoForm = () => {
   const history = useHistory(); // so that we can redirect after the video upload is successful
   const [video, setVideo] = useState(null);
   const [videoLoading, setVideoLoading] = useState(false);
@@ -22,8 +22,8 @@ const UploadVideo = () => {
     setDescription(e.target.value);
   };
 
-  const updateDemo = (e) => {
-    setDemo(e.target.value);
+  const updateDemo = () => {
+    setDemo(!demo);
   };
 
   const handleSubmit = async (e) => {
@@ -59,8 +59,8 @@ const UploadVideo = () => {
   return (
     <form onSubmit={handleSubmit} id="uploadVideoForm">
       <select name="type" onChange={updateType} value={type}>
-        <option value="recording">Class Recording</option>
-        <option value="run">Training Run</option>
+        <option value="recordings">Class Recording</option>
+        <option value="runs">Training Run</option>
         <option value="info">Informational Video</option>
       </select>
       <div className="form__element">
@@ -83,7 +83,7 @@ const UploadVideo = () => {
           type="checkbox"
           value={demo}
           checked={demo}
-          onChange={updateDescription}
+          onChange={updateDemo}
         />
       </div>
       <input type="file" accept="video/*" onChange={updateVideo} />
@@ -93,4 +93,4 @@ const UploadVideo = () => {
   );
 };
 
-export default UploadVideo;
+export default VideoForm;

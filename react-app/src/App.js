@@ -4,7 +4,9 @@ import { useDispatch } from "react-redux";
 import Navbar from "./components/Navbar";
 import NavbarBuffer from "./components/Navbar/NavbarBuffer";
 import Landing from "./components/Landing";
-import UploadVideo from "./components/Video/UploadVideo";
+import UploadVideo from "./components/vid/VideoForm";
+import VideoContainer from "./components/vid/VideoContainer";
+import VideoPage from "./components/vid/VideoPage";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import { authenticate } from "./store/auth";
 
@@ -35,6 +37,12 @@ function App() {
         <Route path="/" exact={true}>
           <Landing />
         </Route>
+        <ProtectedRoute path="/videos/:videoId(\d+)">
+          <VideoPage />
+        </ProtectedRoute>
+        <ProtectedRoute path="/videos/:videoType">
+          <VideoContainer />
+        </ProtectedRoute>
       </Switch>
     </BrowserRouter>
   );
