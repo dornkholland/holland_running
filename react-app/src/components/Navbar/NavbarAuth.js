@@ -30,35 +30,30 @@ const NavbarAuth = ({ setHamburger }) => {
         </NavLink>
       </li>
       <li>
-        <button
-          to="/"
-          onClick={handleLogout}
+        <NavLink
+          to="/videos/recordings"
+          onClick={closeHamburger}
           exact={true}
           activeClassName="active"
         >
+          Class Recordings
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to="/videos/runs"
+          onClick={closeHamburger}
+          exact={true}
+          activeClassName="active"
+        >
+          Full Training Runs
+        </NavLink>
+      </li>
+      <li>
+        <button onClick={handleLogout} activeClassName="active">
           Log Out
         </button>
       </li>
-      {/*      <li>
-        <button
-          to="/login"
-          onClick={handleLogin}
-          exact={true}
-          activeClassName="active"
-        >
-          Login
-        </button>
-      </li>
-      <li>
-        <button
-          to="/sign-up"
-          onClick={handleSignup}
-          exact={true}
-          activeClassName="active"
-        >
-          Sign Up
-        </button>
-      </li> */}
     </ul>
   );
 };

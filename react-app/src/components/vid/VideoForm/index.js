@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 
-const UploadVideo = () => {
+const VideoForm = () => {
   const history = useHistory(); // so that we can redirect after the video upload is successful
   const [video, setVideo] = useState(null);
   const [videoLoading, setVideoLoading] = useState(false);
@@ -93,4 +93,4 @@ const UploadVideo = () => {
   );
 };
 
-export default UploadVideo;
+export default VideoForm;
