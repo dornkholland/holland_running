@@ -39,7 +39,7 @@ const Navbar = () => {
       <button className="navbar__hamburger" onClick={(e) => setHamburger(true)}>
         <i className="fa fa-bars"></i>
       </button>
-      <Link to="/landing" className="navbar__logo">
+      <Link to="/" className="navbar__logo">
         <img src={logo} alt="Holland Running logo" />
       </Link>
       <div></div>
