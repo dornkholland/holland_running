@@ -21,16 +21,6 @@ const NavbarAuth = ({ setHamburger }) => {
     <ul>
       <li>
         <NavLink
-          to="/"
-          onClick={closeHamburger}
-          exact={true}
-          activeClassName="active"
-        >
-          Home
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
           to="/videos/recordings"
           onClick={closeHamburger}
           exact={true}
