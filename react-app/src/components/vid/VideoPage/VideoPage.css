@@ -1,0 +1,23 @@
+.videoPage {
+  min-height: 100vh;
+  background-color: var(--color-4);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: var(--color-1);
+}
+
+.videoPage h1 {
+  font-size: 60px;
+  margin: 40px;
+}
+
+.videoPage video {
+  margin: 30px;
+  border-bottom: 1px solid black;
+  padding: 0 50px 30px 50px;
+}
+
+.videoPage h2 {
+  margin: 10px;
+}
