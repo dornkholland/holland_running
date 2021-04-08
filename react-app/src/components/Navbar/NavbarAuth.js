@@ -18,6 +18,7 @@ const NavbarAuth = ({ setHamburger, setModalIsOpen, setModalType }) => {
   };
 
   const handleModal = () => {
+    closeHamburger();
     setModalIsOpen(true);
     setModalType("upload");
   };

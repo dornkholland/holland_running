@@ -58,11 +58,14 @@ const VideoForm = () => {
 
   return (
     <form onSubmit={handleSubmit} id="uploadVideoForm">
-      <select name="type" onChange={updateType} value={type}>
-        <option value="recordings">Class Recording</option>
-        <option value="runs">Training Run</option>
-        <option value="info">Informational Video</option>
-      </select>
+      <div className="form__element">
+        <label htmlFor="type">Video Category</label>
+        <select name="type" onChange={updateType} value={type}>
+          <option value="recordings">Class Recording</option>
+          <option value="runs">Training Run</option>
+          <option value="info">Informational Video</option>
+        </select>
+      </div>
       <div className="form__element">
         <label htmlFor="name"> name</label>
         <input type="text" name="name" value={name} onChange={updateName} />
@@ -76,8 +79,8 @@ const VideoForm = () => {
           onChange={updateDescription}
         />
       </div>
-      <div className="form__element">
-        <label htmlFor="demo"> demo</label>
+      <div className="form__element element__checkbox">
+        <label htmlFor="demo"> demo:</label>
         <input
           name="demo"
           type="checkbox"

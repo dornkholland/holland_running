@@ -55,6 +55,21 @@
   display: flex;
   flex-direction: column;
   padding: 0 20px;
+  margin-bottom: 20px;
+}
+.form__element select {
+  width: 200px;
+  padding: 5px 35px 5px 5px;
+  font-size: 16px;
+  border: 1px solid var(--color-3);
+  height: 34px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: url(https://www.flaticon.com/svg/vstatic/svg/32/32195.svg?token=exp=1617903766~hmac=937e468c746cb02dd05eee76d82f50fb)
+    96% / 11% no-repeat #eee;
+  background-color: var(--color-4);
+  border-radius: 5px;
 }
 .form__element label {
   font-size: 15px;
@@ -74,8 +89,14 @@
   color: var(--color-1);
   -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03) inset;
   box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03) inset;
-  margin-bottom: 30px;
   min-width: 350px;
+}
+
+.element__checkbox {
+  flex-direction: row;
+}
+
+.form__checkbox input {
 }
 
 .form__button {
@@ -128,7 +149,6 @@
   grid-area: form;
   display: flex;
   flex-direction: column;
-  align-items: center;
 }
 
 .modal i {
