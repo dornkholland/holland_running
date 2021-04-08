@@ -99,10 +99,10 @@
 }
 
 .modal {
+  z-index: 100;
   position: absolute;
   min-width: 500px;
-  min-height: 400px;
-  top: 40px;
+  top: 150px;
   left: 600px;
   right: 600px;
   background-color: var(--color-3);
@@ -110,7 +110,7 @@
   padding-bottom: 30px;
   display: grid;
   grid-template-columns: 1fr 50px;
-  grid-template-rows: 300px 1fr;
+  grid-template-rows: 200px 1fr;
   justify-items: center;
   align-items: start;
   grid-template-areas:
@@ -139,7 +139,7 @@
 }
 
 .modal img {
-  width: 200px;
+  width: 150px;
   margin: 20px;
-  margin-left: 50px;
+  margin-left: 70px;
 }

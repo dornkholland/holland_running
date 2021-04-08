@@ -4,7 +4,7 @@ import LogoutButton from "../auth/LogoutButton";
 import { useDispatch } from "react-redux";
 import { login } from "../../store/auth";
 
-const NavbarNoAuth = ({ setHamburger, setModalIsOpen, setSignupLogin }) => {
+const NavbarNoAuth = ({ setHamburger, setModalIsOpen, setModalType }) => {
   const dispatch = useDispatch();
   const closeHamburger = () => {
     setHamburger(false);
@@ -17,12 +17,12 @@ const NavbarNoAuth = ({ setHamburger, setModalIsOpen, setSignupLogin }) => {
 
   const handleSignup = () => {
     openModal();
-    setSignupLogin("signup");
+    setModalType("signup");
   };
 
   const handleLogin = () => {
     openModal();
-    setSignupLogin("login");
+    setModalType("login");
   };
 
   const handleDemo = () => {

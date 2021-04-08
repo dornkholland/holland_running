@@ -7,13 +7,14 @@ import Modal from "react-modal";
 import "./Navbar.css";
 import SignUpForm from "../auth/SignUpForm";
 import LoginForm from "../auth/LoginForm";
+import VideoForm from "../vid/VideoForm";
 import { useSelector } from "react-redux";
 import logo from "./logo.png";
 
 const Navbar = () => {
   const [hamburger, setHamburger] = useState(false);
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [signupLogin, setSignupLogin] = useState("");
+  const [modalType, setModalType] = useState("");
 
   const user = useSelector((state) => state.auth.user);
 
@@ -54,10 +55,14 @@ const Navbar = () => {
             <NavbarNoAuth
               setHamburger={setHamburger}
               setModalIsOpen={setModalIsOpen}
-              setSignupLogin={setSignupLogin}
+              setModalType={setModalType}
             />
           ) : (
-            <NavbarAuth setHamburger={setHamburger} />
+            <NavbarAuth
+              setHamburger={setHamburger}
+              setModalIsOpen={setModalIsOpen}
+              setModalType={setModalType}
+            />
           )}
         </nav>
       </Drawer>
@@ -71,10 +76,12 @@ const Navbar = () => {
         <button onClick={closeModal} className="modal--minimize">
           <i class="fa fa-window-minimize"></i>
         </button>
-        {signupLogin === "signup" ? (
+        {modalType === "signup" ? (
           <SignUpForm setModalIsOpen={setModalIsOpen} />
-        ) : (
+        ) : modalType === "login" ? (
           <LoginForm setModalIsOpen={setModalIsOpen} />
+        ) : (
+          <VideoForm setModalIsOpen={setModalIsOpen} />
         )}
       </Modal>
     </div>

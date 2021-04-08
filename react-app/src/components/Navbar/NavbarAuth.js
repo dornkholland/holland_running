@@ -2,9 +2,9 @@ import React from "react";
 import { NavLink, Redirect } from "react-router-dom";
 import LogoutButton from "../auth/LogoutButton";
 import { logout } from "../../store/auth";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
-const NavbarAuth = ({ setHamburger }) => {
+const NavbarAuth = ({ setHamburger, setModalIsOpen, setModalType }) => {
   const dispatch = useDispatch();
 
   const closeHamburger = () => {
@@ -16,6 +16,13 @@ const NavbarAuth = ({ setHamburger }) => {
     await dispatch(logout());
     Redirect("/");
   };
+
+  const handleModal = () => {
+    setModalIsOpen(true);
+    setModalType("upload");
+  };
+
+  const user = useSelector((state) => state.auth.user);
 
   return (
     <ul>
@@ -49,6 +56,13 @@ const NavbarAuth = ({ setHamburger }) => {
           Informational Content
         </NavLink>
       </li>
+      {user.role == "owner" ? (
+        <li>
+          <button onClick={handleModal} activeClassName="active">
+            Upload video
+          </button>
+        </li>
+      ) : null}
       <li>
         <button onClick={handleLogout} activeClassName="active">
           Log Out
