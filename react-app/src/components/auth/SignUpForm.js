@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
-import { signUp } from "../../services/auth";
+import { signup } from "../../store/auth";
+import { useDispatch } from "react-redux";
 
 const SignUpForm = ({ setModalIsOpen }) => {
   const [firstName, setFirstName] = useState("");
@@ -8,15 +9,21 @@ const SignUpForm = ({ setModalIsOpen }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
+  const [errors, setErrors] = useState([]);
+  const dispatch = useDispatch();
 
   const onSignUp = async (e) => {
     e.preventDefault();
     if (password === repeatPassword) {
-      const user = await signUp(firstName, lastName, email, password);
+      const user = await dispatch(signup(firstName, lastName, email, password));
+      console.log(user.errors);
       if (!user.errors) {
         //setAuthenticated(true);
         setModalIsOpen(false);
       }
+      setErrors(user.errors);
+    } else {
+      setErrors(["passwords don't match, try again!"]);
     }
   };
 
@@ -42,6 +49,11 @@ const SignUpForm = ({ setModalIsOpen }) => {
 
   return (
     <form onSubmit={onSignUp}>
+      <ul className="errors">
+        {errors.map((err, idx) => (
+          <li key={idx}>{err}</li>
+        ))}
+      </ul>
       <div className="form__element">
         <label>First Name</label>
         <input
@@ -49,6 +61,7 @@ const SignUpForm = ({ setModalIsOpen }) => {
           name="firstName"
           onChange={updateFirstName}
           value={firstName}
+          required={true}
         ></input>
       </div>
       <div className="form__element">
@@ -58,6 +71,7 @@ const SignUpForm = ({ setModalIsOpen }) => {
           name="lastName"
           onChange={updateLastName}
           value={lastName}
+          required={true}
         ></input>
       </div>
       <div className="form__element">
@@ -67,6 +81,7 @@ const SignUpForm = ({ setModalIsOpen }) => {
           name="email"
           onChange={updateEmail}
           value={email}
+          required={true}
         ></input>
       </div>
       <div className="form__element">
@@ -76,6 +91,7 @@ const SignUpForm = ({ setModalIsOpen }) => {
           name="password"
           onChange={updatePassword}
           value={password}
+          required={true}
         ></input>
       </div>
       <div className="form__element">

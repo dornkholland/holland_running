@@ -59,15 +59,11 @@ const NavbarAuth = ({ setHamburger, setModalIsOpen, setModalType }) => {
       </li>
       {user.role == "owner" ? (
         <li>
-          <button onClick={handleModal} activeClassName="active">
-            Upload video
-          </button>
+          <button onClick={handleModal}>Upload video</button>
         </li>
       ) : null}
       <li>
-        <button onClick={handleLogout} activeClassName="active">
-          Log Out
-        </button>
+        <button onClick={handleLogout}>Log Out</button>
       </li>
     </ul>
   );
