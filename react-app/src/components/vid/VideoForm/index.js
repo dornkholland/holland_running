@@ -9,6 +9,7 @@ const VideoForm = () => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [demo, setDemo] = useState(true);
+  const [errors, setErrors] = useState([]);
 
   const updateType = (e) => {
     setType(e.target.value);
@@ -39,15 +40,16 @@ const VideoForm = () => {
       method: "POST",
       body: formData,
     });
+    const data = await res.json();
     if (res.ok) {
-      await res.json();
       setVideoLoading(false);
       history.push("/");
     } else {
       setVideoLoading(false);
       // a real app would probably use more advanced
       // error handling
-      console.log("error");
+      console.log(data.errors);
+      setErrors(data.errors);
     }
   };
 
@@ -58,6 +60,11 @@ const VideoForm = () => {
 
   return (
     <form onSubmit={handleSubmit} id="uploadVideoForm">
+      <ul className="errors">
+        {errors.map((err, idx) => (
+          <li key={idx}>{err}</li>
+        ))}
+      </ul>
       <div className="form__element">
         <label htmlFor="type">Video Category</label>
         <select name="type" onChange={updateType} value={type}>
