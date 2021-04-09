@@ -48,7 +48,6 @@ const VideoForm = () => {
       setVideoLoading(false);
       // a real app would probably use more advanced
       // error handling
-      console.log(data.errors);
       setErrors(data.errors);
     }
   };
@@ -65,8 +64,8 @@ const VideoForm = () => {
           <li key={idx}>{err}</li>
         ))}
       </ul>
-      <div className="form__element">
-        <label htmlFor="type">Video Category</label>
+      <div className="form__element form__element__row">
+        <label htmlFor="type">Video Category:</label>
         <select name="type" onChange={updateType} value={type}>
           <option value="recordings">Class Recording</option>
           <option value="runs">Training Run</option>
@@ -74,20 +73,27 @@ const VideoForm = () => {
         </select>
       </div>
       <div className="form__element">
-        <label htmlFor="name"> name</label>
-        <input type="text" name="name" value={name} onChange={updateName} />
+        <label htmlFor="name"> Name</label>
+        <input
+          type="text"
+          name="name"
+          value={name}
+          onChange={updateName}
+          required={true}
+        />
       </div>
       <div className="form__element">
-        <label htmlFor="description"> description</label>
+        <label htmlFor="description"> Description:</label>
         <input
           type="text"
           name="description"
           value={description}
           onChange={updateDescription}
+          required={true}
         />
       </div>
-      <div className="form__element element__checkbox">
-        <label htmlFor="demo"> demo:</label>
+      <div className="form__element  form__element__checkbox">
+        <label htmlFor="demo"> Demo/Free?</label>
         <input
           name="demo"
           type="checkbox"
@@ -96,8 +102,18 @@ const VideoForm = () => {
           onChange={updateDemo}
         />
       </div>
-      <input type="file" accept="video/*" onChange={updateVideo} />
-      <button type="submit">Submit</button>
+      <div className="form__element form__element__row form__element__file">
+        <label htmlFor="file">Upload video:</label>
+        <input
+          type="file"
+          name="file"
+          accept="video/mp4"
+          onChange={updateVideo}
+        />
+      </div>
+      <button className="form__button" type="submit">
+        Submit
+      </button>
       {videoLoading && <p>Loading...</p>}
     </form>
   );
