@@ -70,6 +70,7 @@
     96% / 11% no-repeat #eee;
   background-color: var(--color-4);
   border-radius: 5px;
+  margin-left: 30px;
 }
 .form__element label {
   font-size: 15px;
@@ -92,11 +93,21 @@
   min-width: 350px;
 }
 
-.element__checkbox {
+.form__element__row {
   flex-direction: row;
+  align-items: center;
 }
 
-.form__checkbox input {
+.form__element__checkbox {
+  width: 100px;
+  display: grid;
+  grid-template-columns: 40px 1fr;
+}
+.form__element__checkbox input {
+  height: 10px;
+  margin-left: 40px;
+  display: flex;
+  min-width: 0px;
 }
 
 .form__button {
@@ -106,6 +117,11 @@
   font-size: 20px;
   width: 60%;
   margin: 20px auto;
+}
+
+.form__element__file input {
+  background-color: transparent;
+  border: none;
 }
 
 /* Modal Stylings */

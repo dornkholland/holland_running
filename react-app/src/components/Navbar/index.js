@@ -18,7 +18,7 @@ const Navbar = () => {
 
   const user = useSelector((state) => state.auth.user);
 
-  Modal.setAppElement(document.getElementById("root"));
+  Modal.setAppElement("#root");
 
   const customStyles = {
     content: {
@@ -74,7 +74,7 @@ const Navbar = () => {
       >
         <img src={logo} alt="Holland Running logo" />
         <button onClick={closeModal} className="modal--minimize">
-          <i class="fa fa-window-minimize"></i>
+          <i className="fa fa-window-minimize"></i>
         </button>
         {modalType === "signup" ? (
           <SignUpForm setModalIsOpen={setModalIsOpen} />

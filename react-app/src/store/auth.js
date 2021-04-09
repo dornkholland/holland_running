@@ -45,10 +45,11 @@ export const signup = (first_name, last_name, email, password) => async (
     }),
   });
   const data = await response.json();
-  if (!data.errors) {
-    dispatch(setUser(data));
-  }
-  return response;
+  console.log(data);
+  //   if (!data.errors) {
+  //     dispatch(setUser(data));
+  //   }
+  return data;
 };
 
 //login user thunk action

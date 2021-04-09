@@ -23,3 +23,15 @@ td,
 img {
   font-family: "Merriweather", calibri, helvetica, sans-serif;
 }
+
+/* error styles */
+
+.errors {
+  color: red;
+  margin: 10px;
+  padding: 5px;
+}
+
+.errors li {
+  margin: 5px;
+}

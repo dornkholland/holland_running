@@ -54,15 +54,11 @@ const NavbarNoAuth = ({ setHamburger, setModalIsOpen, setModalType }) => {
         <button onClick={handleSignup}>Sign Up</button>
       </li>
       <li>
-        <button onClick={handleDemo} activeClassName="active">
-          Demo User
-        </button>
+        <button onClick={handleDemo}>Demo User</button>
       </li>
 
       <li>
-        <button onClick={handleOwner} activeClassName="active">
-          Demo Owner
-        </button>
+        <button onClick={handleOwner}>Demo Owner</button>
       </li>
     </ul>
   );

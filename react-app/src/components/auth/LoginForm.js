@@ -35,11 +35,11 @@ const LoginForm = ({ setModalIsOpen }) => {
 
   return (
     <form onSubmit={onLogin}>
-      <div>
-        {errors.map((error) => (
-          <div>{error}</div>
+      <ul className="errors">
+        {errors.map((error, idx) => (
+          <li key={idx}>{error}</li>
         ))}
-      </div>
+      </ul>
       <div className="form__element">
         <label htmlFor="email">Email</label>
         <input
