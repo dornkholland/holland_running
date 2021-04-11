@@ -1,13 +1,7 @@
 import React from "react";
-import { useDispatch } from "react-redux";
-import { deleteVideo } from "../../../store/video";
 
-const VideoDeleteForm = ({ closeModal, video }) => {
-  const dispatch = useDispatch();
-
-  const handleDelete = async () => {
-    await dispatch(deleteVideo(video));
-  };
+const VideoDeleteForm = ({ closeModal }) => {
+  const handleDelete = () => {};
   return (
     <div className="videoDelete">
       <h1 className="videoDelete__header">Are you sure?</h1>

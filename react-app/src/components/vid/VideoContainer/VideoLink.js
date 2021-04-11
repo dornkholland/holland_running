@@ -1,8 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
+import Modal from "react-modal";
+import VideoDeleteForm from "./VideoDeleteForm";
+import VideoEditForm from "./VideoEditForm";
+import logo from "../../Navbar/logo.png";
 
-const VideoLink = ({ video, setModalIsOpen, setModalType }) => {
+const VideoLink = ({ video }) => {
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [modalType, setModalType] = useState("");
+
   const user = useSelector((state) => state.auth.user);
   const handleEdit = () => {
     setModalIsOpen(true);
@@ -12,6 +19,13 @@ const VideoLink = ({ video, setModalIsOpen, setModalType }) => {
     setModalIsOpen(true);
     setModalType("delete");
   };
+
+  function closeModal() {
+    setModalIsOpen(false);
+  }
+
+  Modal.setAppElement("#root");
+
   return (
     <div>
       {user.role === "owner" ? (
@@ -34,6 +48,22 @@ const VideoLink = ({ video, setModalIsOpen, setModalType }) => {
         </div>
         <i className="fa fa-play-circle"></i>
       </NavLink>
+      <Modal
+        isOpen={modalIsOpen}
+        onRequestClose={closeModal}
+        className="modal"
+        overlayClassName="overlay"
+      >
+        <img src={logo} alt="Holland Running logo" />
+        <button onClick={closeModal} className="modal--minimize">
+          <i className="fa fa-window-minimize"></i>
+        </button>
+        {modalType === "delete" ? (
+          <VideoDeleteForm closeModal={closeModal} video={video} />
+        ) : (
+          <VideoEditForm closeModal={closeModal} video={video} />
+        )}
+      </Modal>
     </div>
   );
 };

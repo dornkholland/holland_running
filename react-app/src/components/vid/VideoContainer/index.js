@@ -3,16 +3,9 @@ import { Redirect, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getVideos } from "../../../store/video";
 import VideoLink from "./VideoLink";
-import VideoDeleteForm from "./VideoDeleteForm";
-import VideoEditForm from "./VideoEditForm";
-import Modal from "react-modal";
 import "./VideoContainer.css";
-import logo from "../../Navbar/logo.png";
 
 const VideoContainer = () => {
-  const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [modalType, setModalType] = useState("");
-
   const [isLoaded, setIsLoaded] = useState(false);
   const dispatch = useDispatch();
   const videoObj = {
@@ -32,12 +25,6 @@ const VideoContainer = () => {
         "Here you'll find all other educational/informational content that I decide to put out.  If you're wondering what running shoes to get or maybe some tips on avoiding injuries, you've come to the right place.",
     },
   };
-
-  function closeModal() {
-    setModalIsOpen(false);
-  }
-
-  Modal.setAppElement("#root");
 
   const { videoType } = useParams();
 
@@ -60,30 +47,10 @@ const VideoContainer = () => {
         <ul className="container__list">
           {Object.entries(videos).map((video) => (
             <li className="list__element" key={video[0]}>
-              <VideoLink
-                video={video[1]}
-                setModalIsOpen={setModalIsOpen}
-                setModalType={setModalType}
-              />
+              <VideoLink video={video[1]} />
             </li>
           ))}
         </ul>
-        <Modal
-          isOpen={modalIsOpen}
-          onRequestClose={closeModal}
-          className="modal"
-          overlayClassName="overlay"
-        >
-          <img src={logo} alt="Holland Running logo" />
-          <button onClick={closeModal} className="modal--minimize">
-            <i className="fa fa-window-minimize"></i>
-          </button>
-          {modalType === "delete" ? (
-            <VideoDeleteForm closeModal={closeModal} />
-          ) : (
-            <VideoEditForm />
-          )}
-        </Modal>
       </div>
     );
   }
