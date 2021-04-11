@@ -3,7 +3,7 @@ from app.models import db, Video
 from flask_login import current_user, login_required
 from app.forms import VideoForm
 from app.s3_helpers import (
-    upload_file_to_s3, allowed_file, get_unique_filename)
+    upload_file_to_s3, allowed_file, get_unique_filename, delete_file_from_s3)
 from datetime import date
 from app.api.auth_routes import validation_errors_to_error_messages
 
@@ -14,6 +14,7 @@ video_routes = Blueprint("videos", __name__)
 @login_required
 def upload_video():
     form = VideoForm()
+    print(form.data)
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         if "video" not in request.files:
@@ -74,3 +75,19 @@ def get_videos(videoType):
     for video in videos:
         returnObj[video.id] = video.to_dict()
     return {"videos":returnObj}
+
+@video_routes.route ("/<videoId>/", methods=["DELETE"])
+@login_required
+def delete_video(videoId):
+    print(videoId)
+    videoUrl = request.get_json()['url']
+    print(videoUrl.split("/")[-1])
+    fileName = videoUrl.split('/')[-1]
+    s3_delete = delete_file_from_s3(fileName)
+    print(s3_delete)
+    if s3_delete["response"]:
+        video = Video.query.filter(Video.id == videoId).delete()
+        db.session.commit()
+    return {"video": videoId}
+    return {"errors": s3_delete["errors"]}
+

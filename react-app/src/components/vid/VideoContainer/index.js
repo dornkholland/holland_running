@@ -45,11 +45,17 @@ const VideoContainer = () => {
           {videoObj[videoType].description}
         </h2>
         <ul className="container__list">
-          {Object.entries(videos).map((video) => (
-            <li className="list__element" key={video[0]}>
-              <VideoLink video={video[1]} />
-            </li>
-          ))}
+          {Object.entries(videos).length ? (
+            Object.entries(videos).map((video) => (
+              <li className="list__element" key={video[0]}>
+                <VideoLink video={video[1]} />
+              </li>
+            ))
+          ) : (
+            <h1 className="container__description">
+              Nothing posted yet, check back soon!
+            </h1>
+          )}
         </ul>
       </div>
     );

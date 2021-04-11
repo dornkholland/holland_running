@@ -8,7 +8,7 @@ const VideoForm = () => {
   const [type, setType] = useState("");
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
-  const [demo, setDemo] = useState(true);
+  const [demo, setDemo] = useState(false);
   const [errors, setErrors] = useState([]);
 
   const updateType = (e) => {
@@ -31,6 +31,7 @@ const VideoForm = () => {
     e.preventDefault();
     const formData = new FormData(document.getElementById("uploadVideoForm"));
     formData.append("video", video);
+    console.log(formData.get("demo"));
 
     // aws uploads can be a bit slow—displaying
     // some sort of loading message is a good idea

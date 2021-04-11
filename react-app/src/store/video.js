@@ -31,13 +31,12 @@ export const getVideos = (type) => async (dispatch) => {
 
 export const deleteVideo = (video) => async (dispatch) => {
   const { id, url } = video;
-  const response = await fetch(`/api/videos/${id}`, {
+  const response = await fetch(`/api/videos/${id}/`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      id,
       url,
     }),
   });
@@ -56,7 +55,7 @@ const videoReducer = (state = initialState, action) => {
       newState = action.payload;
       return newState;
     case REMOVE_VIDEO:
-      console.log(action.payload);
+      delete newState[action.payload];
       return newState;
 
     default:
