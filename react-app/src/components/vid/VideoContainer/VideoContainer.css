@@ -77,3 +77,25 @@
   grid-area: image;
   margin: auto;
 }
+
+/* Owner tools stylings */
+
+.tools {
+  background-color: var(--color-2);
+  font-size: 25px;
+  padding: 5px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.tools button {
+  border: none;
+}
+
+.tools i {
+  margin: 0px 5px;
+}
+
+.trash {
+  color: red;
+}
