@@ -3,11 +3,14 @@ import { Redirect, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getVideos } from "../../../store/video";
 import VideoLink from "./VideoLink";
+import VideoDeleteForm from "./VideoDeleteForm";
+import VideoEditForm from "./VideoEditForm";
 import Modal from "react-modal";
 import "./VideoContainer.css";
 
 const VideoContainer = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [modalType, setModalType] = useState("");
 
   const [isLoaded, setIsLoaded] = useState(false);
   const dispatch = useDispatch();
@@ -56,7 +59,11 @@ const VideoContainer = () => {
         <ul className="container__list">
           {Object.entries(videos).map((video) => (
             <li className="list__element" key={video[0]}>
-              <VideoLink video={video[1]} setModalIsOpen={setModalIsOpen} />
+              <VideoLink
+                video={video[1]}
+                setModalIsOpen={setModalIsOpen}
+                setModalType={setModalType}
+              />
             </li>
           ))}
         </ul>
@@ -65,7 +72,13 @@ const VideoContainer = () => {
           onRequestClose={closeModal}
           className="modal"
           overlayClassName="overlay"
-        ></Modal>
+        >
+          {modalType === "delete" ? (
+            <VideoDeleteForm closeModal={closeModal} />
+          ) : (
+            <VideoEditForm />
+          )}
+        </Modal>
       </div>
     );
   }
