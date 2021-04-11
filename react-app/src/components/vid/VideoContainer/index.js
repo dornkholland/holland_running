@@ -7,6 +7,7 @@ import VideoDeleteForm from "./VideoDeleteForm";
 import VideoEditForm from "./VideoEditForm";
 import Modal from "react-modal";
 import "./VideoContainer.css";
+import logo from "../../Navbar/logo.png";
 
 const VideoContainer = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -73,6 +74,10 @@ const VideoContainer = () => {
           className="modal"
           overlayClassName="overlay"
         >
+          <img src={logo} alt="Holland Running logo" />
+          <button onClick={closeModal} className="modal--minimize">
+            <i className="fa fa-window-minimize"></i>
+          </button>
           {modalType === "delete" ? (
             <VideoDeleteForm closeModal={closeModal} />
           ) : (

@@ -99,3 +99,28 @@
 .trash {
   color: red;
 }
+
+.videoDelete {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-template-areas:
+    "header header"
+    "delete cancel";
+  grid-area: form;
+}
+
+.videoDelete__header {
+  grid-area: header;
+  font-size: 40px;
+  margin: auto;
+}
+
+.videoDelete button {
+  min-width: 150px;
+  margin: 20px;
+}
+
+.delete {
+  color: red;
+}
