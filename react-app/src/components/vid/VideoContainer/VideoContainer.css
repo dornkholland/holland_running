@@ -47,6 +47,7 @@
   grid-template-columns: 1fr 1fr;
   grid-template-areas: "content image";
   max-width: 800px;
+  min-width: 500px;
 }
 
 .vidLink__content {
@@ -123,4 +124,20 @@
 
 .delete {
   color: red;
+}
+
+.demoToggle {
+  margin: auto;
+  display: flex;
+  justify-content: center;
+}
+
+.demoToggle input {
+  width: auto;
+  margin-left: 10px;
+}
+
+.demoToggle label {
+  width: auto;
+  margin-right: 10px;
 }

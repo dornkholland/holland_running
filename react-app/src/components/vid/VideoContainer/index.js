@@ -7,7 +7,15 @@ import "./VideoContainer.css";
 
 const VideoContainer = () => {
   const [isLoaded, setIsLoaded] = useState(false);
+  const [demo, setDemo] = useState(false);
   const dispatch = useDispatch();
+
+  const user = useSelector((state) => state.auth.user);
+
+  const handleDemo = () => {
+    setDemo(!demo);
+  };
+
   const videoObj = {
     recordings: {
       title: "Past Zoom Class Recordings",
@@ -45,12 +53,34 @@ const VideoContainer = () => {
           {videoObj[videoType].description}
         </h2>
         <ul className="container__list">
+          {user.role === "owner" ? (
+            <div className="demoToggle">
+              <label htmlFor="demoToggle__checkbox">Demo Videos</label>
+              <input
+                name="demoToggle__checkbox"
+                type="checkbox"
+                value={demo}
+                checked={demo}
+                onChange={handleDemo}
+              />
+            </div>
+          ) : null}
           {Object.entries(videos).length ? (
-            Object.entries(videos).map((video) => (
-              <li className="list__element" key={video[0]}>
-                <VideoLink video={video[1]} />
-              </li>
-            ))
+            user.role !== "owner" ? (
+              Object.entries(videos).map((video) => (
+                <li className="list__element" key={video[0]}>
+                  <VideoLink video={video[1]} />
+                </li>
+              ))
+            ) : (
+              Object.entries(videos)
+                .filter((video) => video[1].demo === demo)
+                .map((video) => (
+                  <li className="list__element" key={video[0]}>
+                    <VideoLink video={video[1]} />
+                  </li>
+                ))
+            )
           ) : (
             <h1 className="container__description">
               Nothing posted yet, check back soon!
