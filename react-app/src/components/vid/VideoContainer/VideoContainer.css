@@ -47,6 +47,7 @@
   grid-template-columns: 1fr 1fr;
   grid-template-areas: "content image";
   max-width: 800px;
+  min-width: 500px;
 }
 
 .vidLink__content {
@@ -72,8 +73,78 @@
   margin-left: 10px;
 }
 
+.vidLink__demo {
+  font-size: 13px;
+  opacity: 0.8;
+  color: red;
+  margin-left: 10px;
+}
+
 .vidLink i {
   font-size: 60px;
   grid-area: image;
   margin: auto;
+}
+
+/* Owner tools stylings */
+
+.tools {
+  background-color: var(--color-2);
+  font-size: 25px;
+  padding: 5px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.tools button {
+  border: none;
+}
+
+.tools i {
+  margin: 0px 5px;
+}
+
+.trash {
+  color: red;
+}
+
+.videoDelete {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-template-areas:
+    "header header"
+    "delete cancel";
+  grid-area: form;
+}
+
+.videoDelete__header {
+  grid-area: header;
+  font-size: 40px;
+  margin: auto;
+}
+
+.videoDelete button {
+  min-width: 150px;
+  margin: 20px;
+}
+
+.delete {
+  color: red;
+}
+
+.demoToggle {
+  margin: auto;
+  display: flex;
+  justify-content: center;
+}
+
+.demoToggle input {
+  width: auto;
+  margin-left: 10px;
+}
+
+.demoToggle label {
+  width: auto;
+  margin-right: 10px;
 }

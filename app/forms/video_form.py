@@ -7,4 +7,4 @@ class VideoForm(FlaskForm):
     type = StringField('type', validators=[DataRequired()])
     name = StringField('name', validators=[DataRequired()])
     description = StringField('description', validators=[DataRequired()])
-    demo = BooleanField('demo', validators=[DataRequired()])
+    demo = BooleanField('demo')

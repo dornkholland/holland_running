@@ -35,3 +35,134 @@ img {
 .errors li {
   margin: 5px;
 }
+
+/* form styles */
+
+.form__element {
+  display: flex;
+  flex-direction: column;
+  padding: 0 20px;
+  margin-bottom: 20px;
+}
+.form__element select {
+  width: 200px;
+  padding: 5px 35px 5px 5px;
+  font-size: 16px;
+  border: 1px solid var(--color-3);
+  height: 34px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: url(https://www.flaticon.com/svg/vstatic/svg/32/32195.svg?token=exp=1617903766~hmac=937e468c746cb02dd05eee76d82f50fb)
+    96% / 11% no-repeat #eee;
+  background-color: var(--color-4);
+  border-radius: 5px;
+  margin-left: 30px;
+}
+.form__element label {
+  font-size: 15px;
+  color: var(--color-0);
+  margin-bottom: 5px;
+}
+
+.form__element input {
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  border-radius: 4px;
+  font-size: 15px;
+  outline: 0;
+  padding: 10px;
+  width: 100%;
+  background-color: var(--color-4);
+  color: var(--color-1);
+  -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03) inset;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03) inset;
+  min-width: 350px;
+}
+
+.form__element__row {
+  flex-direction: row;
+  align-items: center;
+}
+
+.form__element__checkbox {
+  width: 100px;
+  display: grid;
+  grid-template-columns: 40px 1fr;
+}
+.form__element__checkbox input {
+  height: 10px;
+  margin-left: 40px;
+  display: flex;
+  min-width: 0px;
+}
+
+.form__button {
+  border: 1px solid var(--color-0);
+  background-color: var(--color-2);
+  padding: 10px;
+  font-size: 20px;
+  width: 60%;
+  margin: 20px auto;
+}
+
+.form__element__file input {
+  background-color: transparent;
+  border: none;
+}
+
+/*modal stylings */
+
+.modal {
+  z-index: 100;
+  position: absolute;
+  min-width: 500px;
+  top: 150px;
+  left: 600px;
+  right: 600px;
+  background-color: var(--color-3);
+  padding: 10px;
+  padding-bottom: 30px;
+  display: grid;
+  grid-template-columns: 1fr 50px;
+  grid-template-rows: 200px 1fr;
+  justify-items: center;
+  align-items: start;
+  grid-template-areas:
+    "logo minimize"
+    "form form";
+}
+
+.modal form {
+  margin: 0;
+  border: 1px solid var(--color-0);
+  border-radius: 5px;
+  /*background-color: rgba(232, 255, 193, 0.4);*/
+  background-color: rgba(27, 52, 75, 0.3);
+  padding: 30px;
+  grid-area: form;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal i {
+  font-size: 30px;
+}
+.modal--minimize {
+  border: none;
+}
+
+.modal img {
+  width: 150px;
+  margin: 20px;
+  margin-left: 70px;
+}
+
+.overlay {
+  background-color: rgba(0, 0, 0, 0.8);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
