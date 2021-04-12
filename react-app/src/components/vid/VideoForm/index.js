@@ -42,7 +42,7 @@ const VideoForm = () => {
       body: formData,
     });
     const data = await res.json();
-    if (res.ok) {
+    if (res.url) {
       setVideoLoading(false);
       history.push("/");
     } else {
