@@ -3,7 +3,6 @@
   background-color: var(--color-0);
   display: grid;
   display: flex;
-  padding: 0 10px;
   justify-content: space-between;
   align-items: center;
   position: fixed;
@@ -43,10 +42,25 @@
 }
 
 .navbar__nav li {
-  margin: 25px 10px;
+  margin: 15px 10px;
   font-size: 30px;
 }
 
 .navbar__nav button {
   border: none;
+  width: 100%;
+  display: flex;
+  padding: 5px;
+  margin: 0;
+}
+
+.navbar__nav a {
+  width: 100%;
+  padding: 5px;
+}
+
+.navbar__nav button:hover,
+.navbar__nav a:hover {
+  background-color: rgba(165, 236, 214, 0.1);
+  transition: 0.3s;
 }
