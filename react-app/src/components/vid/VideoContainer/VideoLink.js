@@ -45,6 +45,7 @@ const VideoLink = ({ video }) => {
           <h3 className="vidLink__posted">
             Posted: {video.date.split(" ").slice(0, 4).join(" ")}
           </h3>
+          {video.demo ? <h3 className="vidLink__demo">Free Demo</h3> : null}
         </div>
         <i className="fa fa-play-circle"></i>
       </NavLink>

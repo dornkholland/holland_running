@@ -73,6 +73,13 @@
   margin-left: 10px;
 }
 
+.vidLink__demo {
+  font-size: 13px;
+  opacity: 0.8;
+  color: red;
+  margin-left: 10px;
+}
+
 .vidLink i {
   font-size: 60px;
   grid-area: image;
