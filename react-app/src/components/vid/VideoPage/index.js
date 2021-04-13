@@ -30,6 +30,14 @@ const VideoPage = () => {
         <h1>{video.name}</h1>
         <video src={video.url} controls></video>
         <h2>{video.description}</h2>
+        <iframe
+          src="https://player.vimeo.com/video/536102836"
+          width="640"
+          height="360"
+          frameborder="0"
+          allow="autoplay; fullscreen; picture-in-picture"
+          allowfullscreen
+        ></iframe>
       </div>
     );
   }

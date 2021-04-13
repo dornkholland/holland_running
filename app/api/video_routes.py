@@ -12,25 +12,24 @@ video_routes = Blueprint("videos", __name__)
 
 @video_routes.route("/", methods=["POST"])
 @login_required
-def upload_video():
+def upload_image():
     form = VideoForm()
-    print(form.data)
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        if "video" not in request.files:
-            return {"errors": ["Please upload a video file."]}, 400
+        if "image" not in request.files:
+            return {"errors": ["Please upload a thumbnail."]}, 400
 
-        video = request.files["video"]
+        image = request.files["image"]
 
         if not allowed_file(video.filename):
             return {"errors": ["Sorry, that file type is not permitted."]}, 400
         
-        video.filename = get_unique_filename(video.filename)
+        image.filename = get_unique_filename(image.filename)
 
 
         
 
-        upload = upload_file_to_s3(video)
+        upload = upload_file_to_s3(image)
 
         # THIS IS WHERE IT ERRORS OUT 
         if "url" not in upload:
@@ -42,7 +41,7 @@ def upload_video():
         url = upload["url"]
         # flask_login allows us to get the current user from the request
 
-        new_video = Video(url=url, date=date.today())
+        new_video = Video(thumbnailUrl=url, created_at=date.today())
         form.populate_obj(new_video)
         db.session.add(new_video)
         db.session.commit()
