@@ -6,6 +6,7 @@
   background-color: var(--color-4);
   min-height: 100vh;
   color: var(--color-0);
+  z-index: -2;
 }
 
 .container__title {
@@ -26,6 +27,7 @@
   border: 1px solid var(--color-2);
   border-radius: 10px;
   padding: 40px 70px;
+  z-index: 2;
 }
 
 .list__element {
@@ -39,15 +41,12 @@
   border-radius: 5px;
   display: inline-block;
   background-color: var(--color-4);
-  padding: 10px 30px;
   margin: 0px;
   height: 100%;
   width: 100%;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-areas: "content image";
   max-width: 800px;
   min-width: 500px;
+  position: relative;
 }
 
 .vidLink__content {
@@ -81,9 +80,34 @@
 }
 
 .vidLink i {
-  font-size: 60px;
+  font-size: 100px;
+  z-index: 2;
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  opacity: 0;
+  color: white;
+  transform: translate(-50%, -50%);
+  width: 100%; /* You can specify ANY width values here */
+}
+
+.vidLink__thumbnail:hover i {
+  opacity: 0.5;
+}
+
+.vidLink__thumbnail {
   grid-area: image;
-  margin: auto;
+  position: relative;
+  height: 270px;
+  width: 100%;
+  overflow: hidden;
+}
+
+.vidLink img {
+  width: 100%;
+  z-index: 0;
+  position: absolute;
 }
 
 /* Owner tools stylings */
