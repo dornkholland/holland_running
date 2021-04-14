@@ -92,5 +92,15 @@ def delete_video(videoId):
 @video_routes.route ("/<videoId>/", methods=["PUT"])
 @login_required
 def update_video(videoId):
-    videoUrl = request.get_json()['thumbnail_url']
-    print(videoUrl)
+    if "image" in request.files:
+        print('logic here to update the thumbnail on aws')
+    form = VideoForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        data = {}
+        form.populate_obj(data)
+        video = Video.query.filter_by(id=videoId).update(data)
+        db.session.commit()
+    return 
+        
+
