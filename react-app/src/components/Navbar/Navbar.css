@@ -1,18 +1,17 @@
 .navbarr {
   z-index: 1;
-  background-color: var(--color-0);
+  background-color: transparent;
   display: grid;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: fixed;
+  position: absolute;
   width: 100vw;
   height: 110px;
 }
 
 .navbar__buffer {
-  height: 110px;
-  background-color: black;
+  background-color: transparent;
 }
 
 .navbar__hamburger {
