@@ -44,8 +44,7 @@
   margin: 0px;
   height: 100%;
   width: 100%;
-  max-width: 800px;
-  min-width: 500px;
+  width: 500px;
   position: relative;
 }
 
