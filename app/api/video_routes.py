@@ -89,3 +89,8 @@ def delete_video(videoId):
     return {"video": videoId}
     return {"errors": s3_delete["errors"]}
 
+@video_routes.route ("/<videoId>/", methods=["PUT"])
+@login_required
+def update_video(videoId):
+    videoUrl = request.get_json()['thumbnail_url']
+    print(videoUrl)

@@ -43,8 +43,6 @@ const VideoForm = ({ setModalIsOpen }) => {
     formData.append("image", image);
     formData.set("vimeo_url", url.split('"')[1]);
 
-    // aws uploads can be a bit slow—displaying
-    // some sort of loading message is a good idea
     setImageLoading(true);
 
     const res = await fetch("/api/videos/", {

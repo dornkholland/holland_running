@@ -1,5 +1,5 @@
 const LOAD_VIDEOS = "video/loadVideos";
-const SET_VIDEOS = "video/setVideos";
+const SET_VIDEO = "video/setVideo";
 const REMOVE_VIDEO = "video/removeVideos";
 
 const loadVideos = (videos) => {
@@ -12,6 +12,13 @@ const loadVideos = (videos) => {
 const removeVideo = (video) => {
   return {
     type: REMOVE_VIDEO,
+    payload: video,
+  };
+};
+
+const putVideo = (video) => {
+  return {
+    type: SET_VIDEO,
     payload: video,
   };
 };
@@ -46,6 +53,22 @@ export const deleteVideo = (video) => async (dispatch) => {
   }
 };
 
+export const editVideo = (formData, id) => async (dispatch) => {
+  console.log(id);
+  const response = await fetch(`/api/videos/${id}/`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: formData,
+  });
+  const data = await response.json();
+  if (!data.errors) {
+    dispatch(putVideo(data.video));
+  }
+  return data;
+};
+
 const initialState = { video: {} };
 
 const videoReducer = (state = initialState, action) => {
@@ -57,7 +80,9 @@ const videoReducer = (state = initialState, action) => {
     case REMOVE_VIDEO:
       delete newState[action.payload];
       return newState;
-
+    case SET_VIDEO:
+      console.log(action.payload);
+      return newState;
     default:
       return state;
   }

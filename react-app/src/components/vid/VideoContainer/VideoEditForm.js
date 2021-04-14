@@ -1,14 +1,19 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { editVideo } from "../../../store/video";
 
 const VideoEditForm = ({ closeModal, video }) => {
   const [name, setName] = useState(video.name);
   const [description, setDescription] = useState(video.description);
-  const [demo, setDemo] = useState(false);
-  const [url, setUrl] = useState("");
+  const [demo, setDemo] = useState(video.demo);
+  const [url, setUrl] = useState(
+    `<iframe src=${video.vimeo_url} width="640" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen ></iframe>`
+  );
   const [errors, setErrors] = useState([]);
   const [type, setType] = useState(video.type);
   const [imageLoading, setImageLoading] = useState(false);
   const [image, setImage] = useState(null);
+  const dispatch = useDispatch();
 
   const updateType = (e) => {
     setType(e.target.value);
@@ -35,10 +40,16 @@ const VideoEditForm = ({ closeModal, video }) => {
     setUrl(e.target.value);
   };
 
-  const handleSubmit = () => {};
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const formData = new FormData(document.getElementById("editVideoForm"));
+    formData.append("image", image);
+    formData.set("vimeo_url", url.split('"')[1]);
+    const res = await dispatch(editVideo(formData, video.id));
+  };
 
   return (
-    <form onSubmit={handleSubmit} id="uploadVideoForm">
+    <form onSubmit={handleSubmit} id="editVideoForm">
       <ul className="errors">
         {errors.map((err, idx) => (
           <li key={idx}>{err}</li>
@@ -99,7 +110,6 @@ const VideoEditForm = ({ closeModal, video }) => {
           name="file"
           accept="image/png image/jpeg"
           onChange={updateImage}
-          requred={true}
         />
       </div>
       <button className="form__button" type="submit">
