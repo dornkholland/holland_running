@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 
-const VideoForm = () => {
+const VideoForm = ({ setModalIsOpen }) => {
   const history = useHistory(); // so that we can redirect after the video upload is successful
   const [image, setImage] = useState(null);
   const [imageLoading, setImageLoading] = useState(false);
@@ -41,7 +41,7 @@ const VideoForm = () => {
     e.preventDefault();
     const formData = new FormData(document.getElementById("uploadVideoForm"));
     formData.append("image", image);
-    console.log(formData.get("demo"));
+    formData.set("vimeo_url", url.split('"')[1]);
 
     // aws uploads can be a bit slow—displaying
     // some sort of loading message is a good idea
@@ -52,9 +52,10 @@ const VideoForm = () => {
       body: formData,
     });
     const data = await res.json();
-    if (res.url) {
+    if (res.ok) {
       setImageLoading(false);
       history.push("/");
+      setModalIsOpen(false);
     } else {
       setImageLoading(false);
       // a real app would probably use more advanced
@@ -99,10 +100,10 @@ const VideoForm = () => {
         />
       </div>
       <div className="form__element">
-        <label htmlFor="vimeoUrl"> Vimeo Link:</label>
+        <label htmlFor="vimeo_url"> Vimeo Link:</label>
         <input
           type="text"
-          name="vimeoUrl"
+          name="vimeo_url"
           value={url}
           onChange={updateUrl}
           required={true}

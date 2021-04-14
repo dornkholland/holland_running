@@ -21,7 +21,7 @@ def upload_image():
 
         image = request.files["image"]
 
-        if not allowed_file(video.filename):
+        if not allowed_file(image.filename):
             return {"errors": ["Sorry, that file type is not permitted."]}, 400
         
         image.filename = get_unique_filename(image.filename)
@@ -41,7 +41,7 @@ def upload_image():
         url = upload["url"]
         # flask_login allows us to get the current user from the request
 
-        new_video = Video(thumbnailUrl=url, created_at=date.today())
+        new_video = Video(thumbnail_url=url, created_at=date.today())
         form.populate_obj(new_video)
         db.session.add(new_video)
         db.session.commit()

@@ -7,5 +7,5 @@ class VideoForm(FlaskForm):
     type = StringField('type', validators=[DataRequired()])
     name = StringField('name', validators=[DataRequired()])
     description = TextAreaField('description', validators=[DataRequired()])
-    vimeoUrl = StringField('vimeoUrl', validators=[DataRequired()])
+    vimeo_url = StringField('vimeo_url', validators=[DataRequired()])
     demo = BooleanField('demo')

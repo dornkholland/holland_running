@@ -118,7 +118,7 @@ img {
   z-index: 100;
   position: absolute;
   min-width: 500px;
-  top: 150px;
+  top: 50px;
   left: 600px;
   right: 600px;
   background-color: var(--color-3);
