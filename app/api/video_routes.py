@@ -78,8 +78,7 @@ def get_videos(videoType):
 @video_routes.route ("/<videoId>/", methods=["DELETE"])
 @login_required
 def delete_video(videoId):
-    print(videoId)
-    videoUrl = request.get_json()['url']
+    videoUrl = request.get_json()['thumbnail_url']
     print(videoUrl.split("/")[-1])
     fileName = videoUrl.split('/')[-1]
     s3_delete = delete_file_from_s3(fileName)

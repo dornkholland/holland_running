@@ -30,14 +30,14 @@ export const getVideos = (type) => async (dispatch) => {
 };
 
 export const deleteVideo = (video) => async (dispatch) => {
-  const { id, url } = video;
+  const { id, thumbnail_url } = video;
   const response = await fetch(`/api/videos/${id}/`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      url,
+      thumbnail_url,
     }),
   });
   const data = await response.json();

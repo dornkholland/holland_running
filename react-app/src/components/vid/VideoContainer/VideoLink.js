@@ -45,6 +45,7 @@ const VideoLink = ({ video }) => {
         </div>
         <div className="vidLink__content">
           <h1>{video.name}</h1>
+          <h2>{video.description}</h2>
           <h3 className="vidLink__posted">
             Posted: {video.created_at.split(" ").slice(0, 4).join(" ")}
           </h3>
