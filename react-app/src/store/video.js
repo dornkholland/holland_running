@@ -55,16 +55,18 @@ export const deleteVideo = (video) => async (dispatch) => {
 
 export const editVideo = (formData, id) => async (dispatch) => {
   console.log(id);
+  console.log(JSON.stringify(formData));
   const response = await fetch(`/api/videos/${id}/`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
     },
-    body: formData,
+    body: JSON.stringify(formData),
   });
   const data = await response.json();
   if (!data.errors) {
     dispatch(putVideo(data.video));
+    data.ok = 200;
   }
   return data;
 };
@@ -81,7 +83,7 @@ const videoReducer = (state = initialState, action) => {
       delete newState[action.payload];
       return newState;
     case SET_VIDEO:
-      console.log(action.payload);
+      newState[action.payload.id] = action.payload;
       return newState;
     default:
       return state;

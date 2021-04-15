@@ -97,10 +97,11 @@ def update_video(videoId):
     form = VideoForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        data = {}
-        form.populate_obj(data)
-        video = Video.query.filter_by(id=videoId).update(data)
+        video = Video.query.filter_by(id=videoId).one()
+        form.populate_obj(video)
         db.session.commit()
-    return 
+        print(video)
+        return {"video": video.to_dict()}
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
         
 

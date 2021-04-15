@@ -45,7 +45,13 @@ const VideoEditForm = ({ closeModal, video }) => {
     const formData = new FormData(document.getElementById("editVideoForm"));
     formData.append("image", image);
     formData.set("vimeo_url", url.split('"')[1]);
-    const res = await dispatch(editVideo(formData, video.id));
+    console.log(JSON.stringify(Object.fromEntries(formData)));
+    const res = await dispatch(
+      editVideo(Object.fromEntries(formData), video.id)
+    );
+    if (res.ok) {
+      closeModal();
+    }
   };
 
   return (
