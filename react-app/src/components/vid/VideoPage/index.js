@@ -20,6 +20,7 @@ const VideoPage = () => {
     );
     const data = await response.json();
     video = data.video;
+    console.log(video);
     setIsLoaded(true);
   }, []);
 
@@ -28,7 +29,14 @@ const VideoPage = () => {
     return (
       <div className="videoPage">
         <h1>{video.name}</h1>
-        <video src={video.url} controls></video>
+        <iframe
+          src={video.vimeo_url}
+          width="640"
+          height="360"
+          frameborder="0"
+          allow="autoplay; fullscreen; picture-in-picture"
+          allowfullscreen
+        ></iframe>
         <h2>{video.description}</h2>
       </div>
     );

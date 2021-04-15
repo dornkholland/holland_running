@@ -12,25 +12,24 @@ video_routes = Blueprint("videos", __name__)
 
 @video_routes.route("/", methods=["POST"])
 @login_required
-def upload_video():
+def upload_image():
     form = VideoForm()
-    print(form.data)
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        if "video" not in request.files:
-            return {"errors": ["Please upload a video file."]}, 400
+        if "image" not in request.files:
+            return {"errors": ["Please upload a thumbnail."]}, 400
 
-        video = request.files["video"]
+        image = request.files["image"]
 
-        if not allowed_file(video.filename):
+        if not allowed_file(image.filename):
             return {"errors": ["Sorry, that file type is not permitted."]}, 400
         
-        video.filename = get_unique_filename(video.filename)
+        image.filename = get_unique_filename(image.filename)
 
 
         
 
-        upload = upload_file_to_s3(video)
+        upload = upload_file_to_s3(image)
 
         # THIS IS WHERE IT ERRORS OUT 
         if "url" not in upload:
@@ -42,7 +41,7 @@ def upload_video():
         url = upload["url"]
         # flask_login allows us to get the current user from the request
 
-        new_video = Video(url=url, date=date.today())
+        new_video = Video(thumbnail_url=url, created_at=date.today())
         form.populate_obj(new_video)
         db.session.add(new_video)
         db.session.commit()
@@ -79,8 +78,7 @@ def get_videos(videoType):
 @video_routes.route ("/<videoId>/", methods=["DELETE"])
 @login_required
 def delete_video(videoId):
-    print(videoId)
-    videoUrl = request.get_json()['url']
+    videoUrl = request.get_json()['thumbnail_url']
     print(videoUrl.split("/")[-1])
     fileName = videoUrl.split('/')[-1]
     s3_delete = delete_file_from_s3(fileName)
@@ -90,4 +88,27 @@ def delete_video(videoId):
         db.session.commit()
     return {"video": videoId}
     return {"errors": s3_delete["errors"]}
+
+@video_routes.route ("/<videoId>/", methods=["PUT"])
+@login_required
+def update_video(videoId):
+    video = Video.query.filter_by(id=videoId).one()
+    if "image" in request.files:
+        image = request.files["image"]
+        if not allowed_file(image.filename):
+            return {"errors": ["Sorry, that file type is not permitted."]}, 400
+        fileName = video.thumbnail_url.split('/')[-1]
+        image.filename = fileName
+        upload = upload_file_to_s3(image)
+        if "url" not in upload:
+            return upload, 400
+    form = VideoForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        form.populate_obj(video)
+        db.session.commit()
+        print(video)
+        return {"video": video.to_dict()}
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+        
 

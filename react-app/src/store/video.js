@@ -1,5 +1,5 @@
 const LOAD_VIDEOS = "video/loadVideos";
-const SET_VIDEOS = "video/setVideos";
+const SET_VIDEO = "video/setVideo";
 const REMOVE_VIDEO = "video/removeVideos";
 
 const loadVideos = (videos) => {
@@ -12,6 +12,13 @@ const loadVideos = (videos) => {
 const removeVideo = (video) => {
   return {
     type: REMOVE_VIDEO,
+    payload: video,
+  };
+};
+
+const putVideo = (video) => {
+  return {
+    type: SET_VIDEO,
     payload: video,
   };
 };
@@ -30,20 +37,34 @@ export const getVideos = (type) => async (dispatch) => {
 };
 
 export const deleteVideo = (video) => async (dispatch) => {
-  const { id, url } = video;
+  const { id, thumbnail_url } = video;
   const response = await fetch(`/api/videos/${id}/`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      url,
+      thumbnail_url,
     }),
   });
   const data = await response.json();
   if (!data.errors) {
     dispatch(removeVideo(data.video));
   }
+};
+
+export const editVideo = (formData, id) => async (dispatch) => {
+  console.log(id);
+  const response = await fetch(`/api/videos/${id}/`, {
+    method: "PUT",
+    body: formData,
+  });
+  const data = await response.json();
+  if (!data.errors) {
+    dispatch(putVideo(data.video));
+    data.ok = 200;
+  }
+  return data;
 };
 
 const initialState = { video: {} };
@@ -57,7 +78,9 @@ const videoReducer = (state = initialState, action) => {
     case REMOVE_VIDEO:
       delete newState[action.payload];
       return newState;
-
+    case SET_VIDEO:
+      newState[action.payload.id] = action.payload;
+      return newState;
     default:
       return state;
   }

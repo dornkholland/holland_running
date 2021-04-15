@@ -1,9 +1,11 @@
 import boto3
 import botocore
 import os
-from boto3.s3.transfer import TransferConfig
-
 import uuid
+
+BUCKET_NAME = os.environ.get("S3_BUCKET")
+S3_LOCATION = f"https://{BUCKET_NAME}.s3.amazonaws.com/"
+ALLOWED_EXTENSIONS = {"png", "jpg", "jpeg", "gif"}
 
 s3 = boto3.client(
    "s3",
@@ -12,13 +14,10 @@ s3 = boto3.client(
 )
 
 
-ALLOWED_EXTENSIONS = {"mp4", "mov", "avi"}
-BUCKET_NAME = os.environ.get("S3_BUCKET")
-S3_LOCATION = f"http://{BUCKET_NAME}.s3.amazonaws.com/"
-
 def allowed_file(filename):
     return "." in filename and \
            filename.rsplit(".", 1)[1].lower() in ALLOWED_EXTENSIONS
+
 
 def get_unique_filename(filename):
     ext = filename.rsplit(".", 1)[1].lower()
@@ -26,9 +25,7 @@ def get_unique_filename(filename):
     return f"{unique_filename}.{ext}"
 
 
-
 def upload_file_to_s3(file, acl="public-read"):
-    config = TransferConfig(use_threads=False)
     try:
         s3.upload_fileobj(
             file,
@@ -37,14 +34,11 @@ def upload_file_to_s3(file, acl="public-read"):
             ExtraArgs={
                 "ACL": acl,
                 "ContentType": file.content_type
-            },
-            Config = config,
+            }
         )
     except Exception as e:
         # in case the our s3 upload fails
-        print(e)
         return {"errors": str(e)}
-
     return {"url": f"{S3_LOCATION}{file.filename}"}
 
 def delete_file_from_s3(filename):
@@ -57,3 +51,4 @@ def delete_file_from_s3(filename):
         print(e)
         return {'errors': str(e)}
     return {"response": "ok"}
+

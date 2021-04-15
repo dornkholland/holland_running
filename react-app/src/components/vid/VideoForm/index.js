@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 
-const VideoForm = () => {
+const VideoForm = ({ setModalIsOpen }) => {
   const history = useHistory(); // so that we can redirect after the video upload is successful
-  const [video, setVideo] = useState(null);
-  const [videoLoading, setVideoLoading] = useState(false);
+  const [image, setImage] = useState(null);
+  const [imageLoading, setImageLoading] = useState(false);
   const [type, setType] = useState("");
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [demo, setDemo] = useState(false);
+  const [url, setUrl] = useState("");
   const [errors, setErrors] = useState([]);
 
   const updateType = (e) => {
@@ -27,35 +28,38 @@ const VideoForm = () => {
     setDemo(!demo);
   };
 
+  const updateImage = (e) => {
+    const file = e.target.files[0];
+    setImage(file);
+  };
+
+  const updateUrl = (e) => {
+    setUrl(e.target.value);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(document.getElementById("uploadVideoForm"));
-    formData.append("video", video);
-    console.log(formData.get("demo"));
+    formData.append("image", image);
+    formData.set("vimeo_url", url.split('"')[1]);
 
-    // aws uploads can be a bit slow—displaying
-    // some sort of loading message is a good idea
-    setVideoLoading(true);
+    setImageLoading(true);
 
     const res = await fetch("/api/videos/", {
       method: "POST",
       body: formData,
     });
     const data = await res.json();
-    if (res.url) {
-      setVideoLoading(false);
+    if (res.ok) {
+      setImageLoading(false);
       history.push("/");
+      setModalIsOpen(false);
     } else {
-      setVideoLoading(false);
+      setImageLoading(false);
       // a real app would probably use more advanced
       // error handling
       setErrors(data.errors);
     }
-  };
-
-  const updateVideo = (e) => {
-    const file = e.target.files[0];
-    setVideo(file);
   };
 
   return (
@@ -85,11 +89,21 @@ const VideoForm = () => {
       </div>
       <div className="form__element">
         <label htmlFor="description"> Description:</label>
-        <input
+        <textarea
           type="text"
           name="description"
           value={description}
           onChange={updateDescription}
+          required={true}
+        />
+      </div>
+      <div className="form__element">
+        <label htmlFor="vimeo_url"> Vimeo Link:</label>
+        <input
+          type="text"
+          name="vimeo_url"
+          value={url}
+          onChange={updateUrl}
           required={true}
         />
       </div>
@@ -104,18 +118,19 @@ const VideoForm = () => {
         />
       </div>
       <div className="form__element form__element__row form__element__file">
-        <label htmlFor="file">Upload video:</label>
+        <label htmlFor="file">Upload Thumbnail:</label>
         <input
           type="file"
           name="file"
-          accept="video/mp4"
-          onChange={updateVideo}
+          accept="image/png image/jpeg"
+          onChange={updateImage}
+          requred={true}
         />
       </div>
       <button className="form__button" type="submit">
         Submit
       </button>
-      {videoLoading && <p>Loading...</p>}
+      {imageLoading && <p>Loading...</p>}
     </form>
   );
 };
