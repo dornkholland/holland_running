@@ -55,13 +55,9 @@ export const deleteVideo = (video) => async (dispatch) => {
 
 export const editVideo = (formData, id) => async (dispatch) => {
   console.log(id);
-  console.log(JSON.stringify(formData));
   const response = await fetch(`/api/videos/${id}/`, {
     method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(formData),
+    body: formData,
   });
   const data = await response.json();
   if (!data.errors) {

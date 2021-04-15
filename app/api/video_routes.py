@@ -92,12 +92,19 @@ def delete_video(videoId):
 @video_routes.route ("/<videoId>/", methods=["PUT"])
 @login_required
 def update_video(videoId):
+    video = Video.query.filter_by(id=videoId).one()
     if "image" in request.files:
-        print('logic here to update the thumbnail on aws')
+        image = request.files["image"]
+        if not allowed_file(image.filename):
+            return {"errors": ["Sorry, that file type is not permitted."]}, 400
+        fileName = video.thumbnail_url.split('/')[-1]
+        image.filename = fileName
+        upload = upload_file_to_s3(image)
+        if "url" not in upload:
+            return upload, 400
     form = VideoForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        video = Video.query.filter_by(id=videoId).one()
         form.populate_obj(video)
         db.session.commit()
         print(video)

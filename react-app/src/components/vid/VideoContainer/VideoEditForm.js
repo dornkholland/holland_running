@@ -7,7 +7,7 @@ const VideoEditForm = ({ closeModal, video }) => {
   const [description, setDescription] = useState(video.description);
   const [demo, setDemo] = useState(video.demo);
   const [url, setUrl] = useState(
-    `<iframe src=${video.vimeo_url} width="640" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen ></iframe>`
+    `<iframe src="${video.vimeo_url}" width="640" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen ></iframe>`
   );
   const [errors, setErrors] = useState([]);
   const [type, setType] = useState(video.type);
@@ -45,13 +45,12 @@ const VideoEditForm = ({ closeModal, video }) => {
     const formData = new FormData(document.getElementById("editVideoForm"));
     formData.append("image", image);
     formData.set("vimeo_url", url.split('"')[1]);
-    console.log(JSON.stringify(Object.fromEntries(formData)));
-    const res = await dispatch(
-      editVideo(Object.fromEntries(formData), video.id)
-    );
+    setImageLoading(true);
+    const res = await dispatch(editVideo(formData, video.id));
     if (res.ok) {
       closeModal();
     }
+    setImageLoading(false);
   };
 
   return (

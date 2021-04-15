@@ -51,3 +51,4 @@ def delete_file_from_s3(filename):
         print(e)
         return {'errors': str(e)}
     return {"response": "ok"}
+
