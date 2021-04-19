@@ -1,12 +1,13 @@
 .navbarr {
   z-index: 1;
   background-color: transparent;
-  display: grid;
-  display: flex;
-  justify-content: space-between;
   align-items: center;
   width: 100vw;
   height: 110px;
+  position: absolute;
+  z-index: 3;
+  display: flex;
+  margin-top: 15px;
 }
 
 .navbar__buffer {
@@ -20,7 +21,8 @@
   color: var(--color-3);
   border: none;
   background-color: transparent;
-  margin: 10px;
+  margin: 20px;
+  margin-right: 50px;
 }
 
 .navbar__logo img {

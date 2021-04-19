@@ -43,7 +43,6 @@ const Navbar = () => {
       <Link to="/" className="navbar__logo">
         <img src={logo} alt="Holland Running logo" />
       </Link>
-      <div></div>
       <Drawer
         anchor="left"
         open={hamburger}
