@@ -3,6 +3,11 @@ import { NavLink } from "react-router-dom";
 import LogoutButton from "../auth/LogoutButton";
 import { useDispatch } from "react-redux";
 import { login } from "../../store/auth";
+import {
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
+} from "@material-ui/core";
 
 const NavbarNoAuth = ({ setHamburger, setModalIsOpen, setModalType }) => {
   const dispatch = useDispatch();
@@ -43,7 +48,7 @@ const NavbarNoAuth = ({ setHamburger, setModalIsOpen, setModalType }) => {
   return (
     <>
       {demoToggle === true ? (
-        <ul>
+        <ul className="dropdown">
           <li>
             <button onClick={toggleDemo}> &lt;&lt; </button>
           </li>
@@ -74,8 +79,24 @@ const NavbarNoAuth = ({ setHamburger, setModalIsOpen, setModalType }) => {
             <button onClick={handleSignup}>Sign Up</button>
           </li>
           <li>
-            <button onClick={toggleDemo}>Demo Users >></button>
+            <button onClick={toggleDemo}>Demo Users {">>"}</button>
           </li>
+          <Accordion className="nav__dropdown">
+            <AccordionSummary className="dropdown--off">
+              <button>Demo Users {">>"}</button>
+            </AccordionSummary>
+            <AccordionDetails className="dropdown--on">
+              <ul className="dropdown">
+                <li>
+                  <button onClick={handleDemo}>Demo User</button>
+                </li>
+
+                <li>
+                  <button onClick={handleOwner}>Demo Owner</button>
+                </li>
+              </ul>
+            </AccordionDetails>
+          </Accordion>
         </ul>
       )}
     </>

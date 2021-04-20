@@ -43,6 +43,15 @@
   height: 100%;
 }
 
+.nav__dropdown {
+  background-color: red;
+}
+
+.dropdown--off {
+  background-color: red;
+  border: 1px solid red;
+}
+
 .navbar__nav li {
   margin: 15px 10px;
   font-size: 30px;
