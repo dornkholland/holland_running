@@ -1,5 +1,5 @@
 import React from "react";
-import video from "./landing.mp4";
+import video from "./landing2.mp4";
 
 const Hero = () => {
   return (
@@ -9,8 +9,8 @@ const Hero = () => {
       </video>
       <div className="hero__cover"></div>
       <div className="hero__content">
-        <h1>Running can be tricky.</h1>
-        <h2>There's a lot of information out there.</h2>
+        <h1>Professional running training</h1>
+        <h2>Affordable, online, and tailored to you.</h2>
       </div>
     </div>
   );
