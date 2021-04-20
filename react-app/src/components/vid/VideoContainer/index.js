@@ -52,7 +52,7 @@ const VideoContainer = () => {
       <div className="container">
         <div className="container__hero">
           <img
-            src={videoType === "runs" ? canyon : pacer}
+            src={videoType === "runs" ? canyon : canyon}
             alt="Pacing a run."
           />
           <h1 className="container__title">{videoObj[videoType].title}</h1>

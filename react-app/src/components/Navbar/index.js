@@ -37,12 +37,12 @@ const Navbar = () => {
 
   return (
     <div className="navbarr">
-      <button className="navbar__hamburger" onClick={(e) => setHamburger(true)}>
-        <i className="fa fa-bars"></i>
-      </button>
       <Link to="/" className="navbar__logo">
         <img src={logo} alt="Holland Running logo" />
       </Link>
+      <button className="navbar__hamburger" onClick={(e) => setHamburger(true)}>
+        <i className="fa fa-bars"></i>
+      </button>
       <Drawer
         anchor="left"
         open={hamburger}

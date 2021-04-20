@@ -14,7 +14,7 @@ const InfoGrid = () => {
           <i className="fa fa-question-circle"></i>
         </div>
         <div className="infoGrid__element">
-          <h1>Personalized Training Plans</h1>
+          <h1>Personalized training plan</h1>
           <i className="fa fa-users"></i>
         </div>
       </div>

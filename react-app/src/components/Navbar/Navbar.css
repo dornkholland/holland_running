@@ -7,7 +7,9 @@
   position: absolute;
   z-index: 3;
   display: flex;
+  justify-content: space-between;
   margin-top: 15px;
+  padding: 0px 60px;
 }
 
 .navbar__buffer {
