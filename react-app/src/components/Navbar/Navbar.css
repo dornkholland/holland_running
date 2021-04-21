@@ -44,12 +44,11 @@
 }
 
 .nav__dropdown {
-  background-color: red;
+  font-size: 30px;
+  padding: 0;
 }
 
 .dropdown--off {
-  background-color: red;
-  border: 1px solid red;
 }
 
 .navbar__nav li {
