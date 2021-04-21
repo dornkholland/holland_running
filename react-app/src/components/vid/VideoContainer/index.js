@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { getVideos } from "../../../store/video";
 import VideoLink from "./VideoLink";
 import "./VideoContainer.css";
+import pacer from "./pacer.jpg";
+import canyon from "./canyon.jpg";
 
 const VideoContainer = () => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -18,17 +20,17 @@ const VideoContainer = () => {
 
   const videoObj = {
     recordings: {
-      title: "Past Zoom Class Recordings",
+      title: "Zoom recordings recorded, on demand.",
       description:
         "If you couldn't make it to a live zoom class, fret not!  We record all of the classes and post them regularly below.",
     },
     runs: {
-      title: "Training Runs",
+      title: "Full training runs available for on demand streaming.",
       description:
         "Have a treadmill at home? Use these runs to run along.  Be warned- this won't be just running: there will be warmups, cooldowns, stretching and water breaks involved.",
     },
     info: {
-      title: "Informational Videos",
+      title: "Streamable informational running curriculum",
       description:
         "Here you'll find all other educational/informational content that I decide to put out.  If you're wondering what running shoes to get or maybe some tips on avoiding injuries, you've come to the right place.",
     },
@@ -48,7 +50,13 @@ const VideoContainer = () => {
   else {
     return (
       <div className="container">
-        <h1 className="container__title">{videoObj[videoType].title}</h1>
+        <div className="container__hero">
+          <img
+            src={videoType === "runs" ? canyon : canyon}
+            alt="Pacing a run."
+          />
+          <h1 className="container__title">{videoObj[videoType].title}</h1>
+        </div>
         <h2 className="container__description">
           {videoObj[videoType].description}
         </h2>

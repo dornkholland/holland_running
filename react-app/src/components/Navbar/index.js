@@ -20,30 +20,18 @@ const Navbar = () => {
 
   Modal.setAppElement("#root");
 
-  const customStyles = {
-    content: {
-      top: "50%",
-      left: "50%",
-      right: "auto",
-      bottom: "auto",
-      marginRight: "-50%",
-      transform: "translate(-50%, -50%)",
-    },
-  };
-
   function closeModal() {
     setModalIsOpen(false);
   }
 
   return (
     <div className="navbarr">
-      <button className="navbar__hamburger" onClick={(e) => setHamburger(true)}>
-        <i className="fa fa-bars"></i>
-      </button>
       <Link to="/" className="navbar__logo">
         <img src={logo} alt="Holland Running logo" />
       </Link>
-      <div></div>
+      <button className="navbar__hamburger" onClick={(e) => setHamburger(true)}>
+        <i className="fa fa-bars"></i>
+      </button>
       <Drawer
         anchor="left"
         open={hamburger}
