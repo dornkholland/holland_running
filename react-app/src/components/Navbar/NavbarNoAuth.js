@@ -10,24 +10,12 @@ import {
   createMuiTheme,
   ThemeProvider,
 } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
 
 const NavbarNoAuth = ({ setHamburger, setModalIsOpen, setModalType }) => {
   const dispatch = useDispatch();
   const closeHamburger = () => {
     setHamburger(false);
   };
-
-  const useStyles = makeStyles({
-    hideBorder: {
-      "&.MuiAccordion-root:before": {
-        backgroundColor: "transparent",
-      },
-      "&.MuiAccordion-root.Mui-expanded": {
-        margin: 0,
-      },
-    },
-  });
 
   const theme = createMuiTheme({
     overrides: {
@@ -37,7 +25,6 @@ const NavbarNoAuth = ({ setHamburger, setModalIsOpen, setModalType }) => {
           "&::before": {
             backgroundColor: "transparent",
           },
-          backgroundColor: "transparent",
           "&.Mui-expanded": {
             margin: 0,
           },
@@ -46,10 +33,12 @@ const NavbarNoAuth = ({ setHamburger, setModalIsOpen, setModalType }) => {
       MuiAccordionSummary: {
         // Name of the rule
         root: {
+          height: "50px",
           padding: 0,
           minHeight: "0px",
           "&.Mui-expanded": {
             minHeight: "0px",
+            backgroundColor: "rgba(165, 236, 214, .1)",
           },
         },
         expanded: {
@@ -65,8 +54,6 @@ const NavbarNoAuth = ({ setHamburger, setModalIsOpen, setModalType }) => {
       },
     },
   });
-
-  const classes = useStyles();
 
   const openModal = () => {
     closeHamburger();
@@ -121,12 +108,10 @@ const NavbarNoAuth = ({ setHamburger, setModalIsOpen, setModalType }) => {
             margin: 0,
           }}
           className={`nav__dropdown`}
-          classes={{ expanded: classes.expanded }}
         >
           <li>
             <AccordionSummary
               className={`accordion__summary`}
-              classes={{ content: classes.content, expanded: classes.expanded }}
               expandIcon={<i className="fa fa-angle-double-down"></i>}
             >
               <button>Demo Users</button>
