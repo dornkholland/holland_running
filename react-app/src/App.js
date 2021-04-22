@@ -6,6 +6,7 @@ import NavbarBuffer from "./components/Navbar/NavbarBuffer";
 import Landing from "./components/Landing";
 import VideoContainer from "./components/vid/VideoContainer";
 import VideoPage from "./components/vid/VideoPage";
+import PersonalizedTraining from "./components/train/PersonalizedTraining";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import { authenticate } from "./store/auth";
 
@@ -26,7 +27,6 @@ function App() {
   return (
     <BrowserRouter>
       <Navbar />
-      <NavbarBuffer />
       <Switch>
         {/*test routs begin here*/}
         {/*test routs end here*/}
@@ -38,6 +38,9 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path="/videos/:videoType">
           <VideoContainer />
+        </ProtectedRoute>
+        <ProtectedRoute path="/training">
+          <PersonalizedTraining />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>

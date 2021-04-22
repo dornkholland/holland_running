@@ -168,7 +168,7 @@ option {
   outline: none;
 }
 
-input[type="checkbox"] {
+.form__element__checkbox input {
   /* Double-sized Checkboxes */
   -ms-transform: scale(2); /* IE */
   -moz-transform: scale(2); /* FF */
