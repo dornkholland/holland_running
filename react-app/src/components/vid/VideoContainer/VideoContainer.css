@@ -32,9 +32,10 @@
 
 .container__title {
   font-size: 75px;
-  margin: auto auto;
+  margin: auto 100px;
   padding: 20px 40px;
   color: white;
+  max-width: 75vw;
 }
 
 .container__description {

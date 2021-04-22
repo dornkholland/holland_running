@@ -4,10 +4,10 @@
 /* color scheme */
 :root {
   --color-0: #00143a;
-  --color-1: #0278ae;
-  --color-2: #51adcf;
-  --color-3: #a5ecd7;
-  --color-4: #e8ffc1;
+  --color-1: #132c33;
+  --color-2: #126e82;
+  --color-3: #51c4d3;
+  --color-4: #d8e3e7;
 }
 
 /*font setup globally */
@@ -82,7 +82,6 @@ img {
   color: var(--color-1);
   -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03) inset;
   box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03) inset;
-  min-width: 350px;
 }
 
 .form__element__row {
@@ -120,17 +119,21 @@ img {
 
 .modal {
   z-index: 100;
+  height: 100%;
   position: absolute;
-  min-width: 500px;
-  top: 50px;
-  left: 600px;
-  right: 600px;
+  width: 40vw;
+  min-width: 400px;
+  max-width: 600px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 80vh;
   background-color: var(--color-3);
   padding: 10px;
   padding-bottom: 30px;
   display: grid;
   grid-template-columns: 1fr 50px;
-  grid-template-rows: 200px 1fr;
+  grid-template-rows: 150px 1fr;
   justify-items: center;
   align-items: start;
   grid-template-areas:
@@ -140,6 +143,7 @@ img {
 
 .modal form {
   margin: 0;
+  width: 90%;
   border: 1px solid var(--color-0);
   border-radius: 5px;
   /*background-color: rgba(232, 255, 193, 0.4);*/
@@ -147,7 +151,9 @@ img {
   padding: 30px;
   grid-area: form;
   display: flex;
+  height: auto;
   flex-direction: column;
+  flex-wrap: wrap;
 }
 
 .modal i {
@@ -158,7 +164,7 @@ img {
 }
 
 .modal img {
-  width: 150px;
+  width: 100px;
   margin: 20px;
   margin-left: 70px;
 }
@@ -170,5 +176,5 @@ img {
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: 2;
+  z-index: 3;
 }

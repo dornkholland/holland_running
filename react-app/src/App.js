@@ -29,9 +29,6 @@ function App() {
       <NavbarBuffer />
       <Switch>
         {/*test routs begin here*/}
-        <Route path="/test/video">
-          <VideoPage />
-        </Route>
         {/*test routs end here*/}
         <Route path="/" exact={true}>
           <Landing />

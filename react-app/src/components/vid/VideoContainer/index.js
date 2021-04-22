@@ -19,13 +19,8 @@ const VideoContainer = () => {
   };
 
   const videoObj = {
-    recordings: {
-      title: "Zoom recordings recorded, on demand.",
-      description:
-        "If you couldn't make it to a live zoom class, fret not!  We record all of the classes and post them regularly below.",
-    },
     runs: {
-      title: "Full training runs available for on demand streaming.",
+      title: "Full training runs streamable anywhere, anytime.",
       description:
         "Have a treadmill at home? Use these runs to run along.  Be warned- this won't be just running: there will be warmups, cooldowns, stretching and water breaks involved.",
     },
