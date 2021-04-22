@@ -38,7 +38,7 @@ const NavbarNoAuth = ({ setHamburger, setModalIsOpen, setModalType }) => {
           minHeight: "0px",
           "&$expanded": {
             minHeight: "0px",
-            backgroundColor: "rgba(165, 236, 214, .1)",
+            backgroundColor: "rgba(0, 0, 0, .1)",
           },
         },
         expanded: {

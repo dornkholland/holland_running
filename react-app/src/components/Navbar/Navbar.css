@@ -38,7 +38,7 @@
 
 .navbar__nav {
   min-width: 200px;
-  background-color: var(--color-1);
+  background-color: var(--color-3);
   height: 100%;
 }
 
@@ -83,12 +83,12 @@
 
 .navbar__nav button:hover,
 .navbar__nav a:hover {
-  background-color: rgba(165, 236, 214, 0.1);
+  background-color: rgba(0, 0, 0, 0.1);
   transition: 0.3s;
 }
 
 .accordion__summary:hover {
-  background-color: rgba(165, 236, 214, 0.1);
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
 .accordion__summary button:hover {
