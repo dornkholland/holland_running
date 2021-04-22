@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 const Landing = () => {
   const [hamburger, setHamburger] = useState(false);
   const user = useSelector((state) => state.auth.user);
-  if (user) return <Redirect to="/videos/recordings" />;
+  if (user) return <Redirect to="/videos/runs" />;
   return (
     <div className="Landing">
       <Hero />

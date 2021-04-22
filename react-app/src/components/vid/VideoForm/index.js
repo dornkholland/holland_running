@@ -72,7 +72,6 @@ const VideoForm = ({ setModalIsOpen }) => {
       <div className="form__element form__element__row">
         <label htmlFor="type">Video Category:</label>
         <select name="type" onChange={updateType} value={type}>
-          <option value="recordings">Class Recording</option>
           <option value="runs">Training Run</option>
           <option value="info">Informational Video</option>
         </select>
