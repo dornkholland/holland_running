@@ -3,6 +3,13 @@ import { NavLink, Redirect } from "react-router-dom";
 import LogoutButton from "../auth/LogoutButton";
 import { logout } from "../../store/auth";
 import { useSelector, useDispatch } from "react-redux";
+import {
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
+  createMuiTheme,
+  ThemeProvider,
+} from "@material-ui/core";
 
 const NavbarAuth = ({ setHamburger, setModalIsOpen, setModalType }) => {
   const dispatch = useDispatch();

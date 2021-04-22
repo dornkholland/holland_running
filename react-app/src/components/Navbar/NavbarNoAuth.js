@@ -8,8 +8,8 @@ import {
   AccordionSummary,
   AccordionDetails,
   createMuiTheme,
+  ThemeProvider,
 } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
 
 const NavbarNoAuth = ({ setHamburger, setModalIsOpen, setModalType }) => {
   const dispatch = useDispatch();
@@ -17,20 +17,43 @@ const NavbarNoAuth = ({ setHamburger, setModalIsOpen, setModalType }) => {
     setHamburger(false);
   };
 
-  const useStyles = makeStyles({
-    hideBorder: {
-      "&.MuiAccordion-root:before": {
-        backgroundColor: "transparent",
+  const theme = createMuiTheme({
+    overrides: {
+      // Style sheet name ⚛️
+      MuiAccordion: {
+        root: {
+          "&::before": {
+            backgroundColor: "transparent",
+          },
+          "&.Mui-expanded": {
+            margin: 0,
+          },
+        },
       },
-    },
-    summary: {
-      "&.MuiAccordionSummary-root": {
-        padding: 0,
+      MuiAccordionSummary: {
+        // Name of the rule
+        root: {
+          height: "50px",
+          padding: 0,
+          minHeight: "0px",
+          "&.Mui-expanded": {
+            minHeight: "0px",
+            backgroundColor: "rgba(165, 236, 214, .1)",
+          },
+        },
+        expanded: {
+          // Some CSS
+          margin: 0,
+        },
+        content: {
+          "&.Mui-expanded": {
+            margin: 0,
+          },
+          margin: 0,
+        },
       },
     },
   });
-
-  const classes = useStyles();
 
   const openModal = () => {
     closeHamburger();
@@ -75,32 +98,38 @@ const NavbarNoAuth = ({ setHamburger, setModalIsOpen, setModalType }) => {
       <li>
         <button onClick={handleSignup}>Sign Up</button>
       </li>
-      <Accordion
-        style={{
-          backgroundColor: "transparent",
-          boxShadow: "none",
-          border: "0px solid black",
-          padding: 0,
-        }}
-        className={`nav__dropdown ${classes.hideBorder}`}
-      >
-        <li>
-          <AccordionSummary className={classes.summary}>
-            <button>Demo Users {">>"}</button>
-          </AccordionSummary>
-        </li>
-        <AccordionDetails className="dropdown--on">
-          <ul className="dropdown">
-            <li>
-              <button onClick={handleDemo}>Demo User</button>
-            </li>
+      <ThemeProvider theme={theme}>
+        <Accordion
+          style={{
+            backgroundColor: "transparent",
+            boxShadow: "none",
+            border: "0px solid black",
+            padding: 0,
+            margin: 0,
+          }}
+          className={`nav__dropdown`}
+        >
+          <li>
+            <AccordionSummary
+              className={`accordion__summary`}
+              expandIcon={<i className="fa fa-angle-double-down"></i>}
+            >
+              <button>Demo Users</button>
+            </AccordionSummary>
+          </li>
+          <AccordionDetails style={{ margin: 0 }}>
+            <ul className="dropdown">
+              <li>
+                <button onClick={handleDemo}>Demo User</button>
+              </li>
 
-            <li>
-              <button onClick={handleOwner}>Demo Owner</button>
-            </li>
-          </ul>
-        </AccordionDetails>
-      </Accordion>
+              <li>
+                <button onClick={handleOwner}>Demo Owner</button>
+              </li>
+            </ul>
+          </AccordionDetails>
+        </Accordion>
+      </ThemeProvider>
     </ul>
   );
 };
