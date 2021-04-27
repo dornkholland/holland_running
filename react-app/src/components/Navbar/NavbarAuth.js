@@ -125,6 +125,16 @@ const NavbarAuth = ({ setHamburger, setModalIsOpen, setModalType }) => {
         </li>
       </ThemeProvider>
       <li>
+        <NavLink
+          to="/training"
+          onClick={closeHamburger}
+          exact={true}
+          activeClassName="active"
+        >
+          My Training Sessions
+        </NavLink>
+      </li>
+      <li>
         <button onClick={handleLogout}>Log Out</button>
       </li>
     </ul>

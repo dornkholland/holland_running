@@ -85,7 +85,7 @@
 }
 
 .infoGrid__element {
-  background-color: var(--color-3);
+  background-color: var(--color-4);
   min-width: 200px;
   min-height: 200px;
   display: flex;

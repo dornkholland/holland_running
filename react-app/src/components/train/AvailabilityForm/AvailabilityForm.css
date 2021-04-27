@@ -1,0 +1,7 @@
+.availForm {
+  max-height: 400px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  max-width: 300px;
+}
