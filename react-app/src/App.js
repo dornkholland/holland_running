@@ -27,6 +27,7 @@ function App() {
   return (
     <BrowserRouter>
       <Navbar />
+      <NavbarBuffer />
       <Switch>
         {/*test routs begin here*/}
         {/*test routs end here*/}

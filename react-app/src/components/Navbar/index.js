@@ -10,6 +10,7 @@ import LoginForm from "../auth/LoginForm";
 import VideoForm from "../vid/VideoForm";
 import { useSelector } from "react-redux";
 import logo from "./logo.png";
+import inlineLogo from "./logo2.png";
 
 const Navbar = () => {
   const [hamburger, setHamburger] = useState(false);
@@ -26,12 +27,12 @@ const Navbar = () => {
 
   return (
     <div className="navbarr">
-      <Link to="/" className="navbar__logo">
-        <img src={logo} alt="Holland Running logo" />
-      </Link>
       <button className="navbar__hamburger" onClick={(e) => setHamburger(true)}>
         <i className="fa fa-bars"></i>
       </button>
+      <Link to="/" className="navbar__logo">
+        <img src={inlineLogo} alt="Holland Running logo" />
+      </Link>
       <Drawer
         anchor="left"
         open={hamburger}

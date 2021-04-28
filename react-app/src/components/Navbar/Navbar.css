@@ -1,21 +1,19 @@
 .navbarr {
   z-index: 1;
   background-color: transparent;
+  position: fixed;
   align-items: center;
   width: 100vw;
-  height: 110px;
-  position: absolute;
+  height: 80px;
   z-index: 3;
   display: flex;
-  justify-content: space-between;
-  margin-top: 15px;
-  padding: 0px 60px;
+  background-color: var(--color-1);
+  box-shadow: 1px 0px 1px 0px var(--color-3);
 }
 
 .navbar__buffer {
   background-color: var(--color-0);
-  height: 130px;
-  box-shadow: 1px 3px 5px gray;
+  height: 80px;
 }
 
 .navbar__hamburger {
@@ -30,8 +28,7 @@
 }
 
 .navbar__logo img {
-  width: 100px;
-  height: auto;
+  height: 40px;
   border-radius: 5px;
   margin-right: 80px;
 }
@@ -39,7 +36,7 @@
 /* navbar content*/
 
 .navbar__nav {
-  min-width: 200px;
+  max-width: 250px;
   background-color: var(--color-4);
   height: 100%;
 }
@@ -55,8 +52,7 @@
 }
 
 .navbar__nav li {
-  font-size: 30px;
-  min-height: 50px;
+  font-size: 20px;
   margin: 0;
   padding: 0;
   min-width: 250px;
