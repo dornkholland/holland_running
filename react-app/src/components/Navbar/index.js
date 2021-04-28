@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { Drawer } from "@material-ui/core";
 import NavbarNoAuth from "./NavbarNoAuth";
 import NavbarAuth from "./NavbarAuth";
@@ -10,6 +10,8 @@ import LoginForm from "../auth/LoginForm";
 import VideoForm from "../vid/VideoForm";
 import { useSelector } from "react-redux";
 import logo from "./logo.png";
+import inlineLogo from "./logo2.png";
+import MenuIcon from "@material-ui/icons/Menu";
 
 const Navbar = () => {
   const [hamburger, setHamburger] = useState(false);
@@ -24,20 +26,32 @@ const Navbar = () => {
     setModalIsOpen(false);
   }
 
+  function closeHamburger() {
+    setHamburger(false);
+  }
+
   return (
     <div className="navbarr">
-      <Link to="/" className="navbar__logo">
-        <img src={logo} alt="Holland Running logo" />
-      </Link>
       <button className="navbar__hamburger" onClick={(e) => setHamburger(true)}>
-        <i className="fa fa-bars"></i>
+        <MenuIcon />
       </button>
+      <Link to="/" className="navbar__logo">
+        <img src={inlineLogo} alt="Holland Running logo" />
+      </Link>
       <Drawer
         anchor="left"
         open={hamburger}
         onClose={(e) => setHamburger(false)}
         className="navbar__drawer"
       >
+        <nav className="navbar__top">
+          <button onClick={closeHamburger}>
+            <MenuIcon />
+          </button>
+          <NavLink to="/">
+            <img src={inlineLogo} alt="logo" />
+          </NavLink>
+        </nav>
         <nav className="navbar__nav">
           {!user ? (
             <NavbarNoAuth
