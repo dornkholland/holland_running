@@ -26,6 +26,10 @@ const Navbar = () => {
     setModalIsOpen(false);
   }
 
+  function closeHamburger() {
+    setHamburger(false);
+  }
+
   return (
     <div className="navbarr">
       <button className="navbar__hamburger" onClick={(e) => setHamburger(true)}>
@@ -41,7 +45,7 @@ const Navbar = () => {
         className="navbar__drawer"
       >
         <nav className="navbar__top">
-          <button onClick={closeModal}>
+          <button onClick={closeHamburger}>
             <MenuIcon />
           </button>
           <NavLink to="/">

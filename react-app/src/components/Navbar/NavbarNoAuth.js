@@ -10,6 +10,10 @@ import {
   createMuiTheme,
   ThemeProvider,
 } from "@material-ui/core";
+import HomeIcon from "@material-ui/icons/Home";
+import EmojiPeopleIcon from "@material-ui/icons/EmojiPeople";
+import PersonIcon from "@material-ui/icons/Person";
+import PeopleIcon from "@material-ui/icons/People";
 
 const NavbarNoAuth = ({ setHamburger, setModalIsOpen, setModalType }) => {
   const dispatch = useDispatch();
@@ -33,7 +37,7 @@ const NavbarNoAuth = ({ setHamburger, setModalIsOpen, setModalType }) => {
       MuiAccordionSummary: {
         // Name of the rule
         root: {
-          height: "40px",
+          height: "30px",
           padding: 0,
           minHeight: "0px",
           "&$expanded": {
@@ -88,15 +92,23 @@ const NavbarNoAuth = ({ setHamburger, setModalIsOpen, setModalType }) => {
           onClick={closeHamburger}
           exact={true}
           activeClassName="active"
+          className="nav__element"
         >
+          <HomeIcon className="nav__icon" />
           Home
         </NavLink>
       </li>
       <li>
-        <button onClick={handleLogin}>Login</button>
+        <button onClick={handleSignup} className="nav__element">
+          <EmojiPeopleIcon className="nav__icon" />
+          Sign Up
+        </button>
       </li>
       <li>
-        <button onClick={handleSignup}>Sign Up</button>
+        <button onClick={handleLogin}>
+          <PersonIcon className="nav__icon" />
+          Login
+        </button>
       </li>
       <ThemeProvider theme={theme}>
         <li>
@@ -115,7 +127,10 @@ const NavbarNoAuth = ({ setHamburger, setModalIsOpen, setModalType }) => {
                 className={`accordion__summary`}
                 expandIcon={<i className="fa fa-angle-double-down"></i>}
               >
-                <button>Demo Users</button>
+                <button>
+                  <PeopleIcon className="nav__icon" />
+                  Demo Users
+                </button>
               </AccordionSummary>
             </li>
             <AccordionDetails style={{ margin: 0 }}>

@@ -69,6 +69,11 @@
   padding: 0;
 }
 
+.nav__icon {
+  margin: 0px 5px;
+  color: var(--color-1);
+}
+
 .MuiAccordionSummary-content.Mui-expanded {
   margin: 0;
   display: inline;
@@ -87,6 +92,7 @@
   display: flex;
   padding: 5px;
   margin: 0;
+  height: 30px;
 }
 
 .navbar__nav a {
@@ -96,6 +102,7 @@
   display: flex;
   align-items: center;
   padding: 5px;
+  height: 30px;
 }
 
 .fa-angle-double-down {

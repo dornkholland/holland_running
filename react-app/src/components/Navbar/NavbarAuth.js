@@ -12,6 +12,7 @@ import {
 } from "@material-ui/core";
 import VideoLibraryIcon from "@material-ui/icons/VideoLibrary";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+import FitnessCenterIcon from "@material-ui/icons/FitnessCenter";
 
 const NavbarAuth = ({ setHamburger, setModalIsOpen, setModalType }) => {
   const dispatch = useDispatch();
@@ -36,7 +37,7 @@ const NavbarAuth = ({ setHamburger, setModalIsOpen, setModalType }) => {
       MuiAccordionSummary: {
         // Name of the rule
         root: {
-          height: "40px",
+          height: "30px",
           padding: 0,
           minHeight: "0px",
           "&$expanded": {
@@ -89,7 +90,7 @@ const NavbarAuth = ({ setHamburger, setModalIsOpen, setModalType }) => {
                 expandIcon={<i className="fa fa-angle-double-down"></i>}
               >
                 <button>
-                  <VideoLibraryIcon />
+                  <VideoLibraryIcon className="nav__icon" />
                   Videos
                 </button>
               </AccordionSummary>
@@ -133,12 +134,13 @@ const NavbarAuth = ({ setHamburger, setModalIsOpen, setModalType }) => {
           exact={true}
           activeClassName="active"
         >
+          <FitnessCenterIcon className="nav__icon" />
           My Training Sessions
         </NavLink>
       </li>
       <li>
         <button onClick={handleLogout}>
-          <ExitToAppIcon />
+          <ExitToAppIcon className="nav__icon" />
           Log Out
         </button>
       </li>
