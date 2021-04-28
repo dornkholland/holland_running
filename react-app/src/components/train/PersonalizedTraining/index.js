@@ -12,7 +12,6 @@ const PersonalizedTraining = () => {
   };
   return (
     <>
-      <div className="navbar__buffer"></div>
       <Calendar onChange={handleCalendar} value={date} />
       <AvailabilityForm />
     </>
