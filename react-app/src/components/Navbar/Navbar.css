@@ -4,7 +4,7 @@
   position: fixed;
   align-items: center;
   width: 100vw;
-  height: 80px;
+  height: 60px;
   z-index: 3;
   display: flex;
   background-color: var(--color-1);
@@ -13,13 +13,13 @@
 
 .navbar__buffer {
   background-color: var(--color-0);
-  height: 80px;
+  height: 60px;
 }
 
 .navbar__hamburger {
-  width: 50px;
-  height: 50px;
-  font-size: 35px;
+  width: 25px;
+  height: 25px;
+  font-size: 20px;
   color: var(--color-3);
   border: none;
   background-color: transparent;
@@ -28,9 +28,32 @@
 }
 
 .navbar__logo img {
-  height: 40px;
+  height: 25px;
   border-radius: 5px;
   margin-right: 80px;
+}
+
+/* navbar top */
+.navbar__top {
+  height: 70px;
+  border-bottom: 1px solid grey;
+  display: flex;
+  align-items: center;
+  width: 250px;
+  background-color: var(--color-1);
+  color: var(--color-3);
+  padding: 10px 0;
+}
+
+.navbar__top button,
+.navbar__top a {
+  border: none;
+  margin: 0px 20px;
+}
+
+.navbar__top img {
+  height: 30px;
+  width: auto;
 }
 
 /* navbar content*/
@@ -52,7 +75,7 @@
 }
 
 .navbar__nav li {
-  font-size: 20px;
+  font-size: 16px;
   margin: 0;
   padding: 0;
   min-width: 250px;

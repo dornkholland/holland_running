@@ -10,6 +10,8 @@ import {
   createMuiTheme,
   ThemeProvider,
 } from "@material-ui/core";
+import VideoLibraryIcon from "@material-ui/icons/VideoLibrary";
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 
 const NavbarAuth = ({ setHamburger, setModalIsOpen, setModalType }) => {
   const dispatch = useDispatch();
@@ -34,17 +36,14 @@ const NavbarAuth = ({ setHamburger, setModalIsOpen, setModalType }) => {
       MuiAccordionSummary: {
         // Name of the rule
         root: {
-          height: "50px",
+          height: "40px",
           padding: 0,
           minHeight: "0px",
           "&$expanded": {
             minHeight: "0px",
             backgroundColor: "rgba(0, 0, 0, .1)",
+            margin: 0,
           },
-        },
-        expanded: {
-          // Some CSS
-          margin: 0,
         },
         content: {
           "&$expanded": {
@@ -89,7 +88,10 @@ const NavbarAuth = ({ setHamburger, setModalIsOpen, setModalType }) => {
                 className={`accordion__summary`}
                 expandIcon={<i className="fa fa-angle-double-down"></i>}
               >
-                <button>Videos</button>
+                <button>
+                  <VideoLibraryIcon />
+                  Videos
+                </button>
               </AccordionSummary>
             </li>
             <AccordionDetails style={{ margin: 0 }}>
@@ -135,7 +137,10 @@ const NavbarAuth = ({ setHamburger, setModalIsOpen, setModalType }) => {
         </NavLink>
       </li>
       <li>
-        <button onClick={handleLogout}>Log Out</button>
+        <button onClick={handleLogout}>
+          <ExitToAppIcon />
+          Log Out
+        </button>
       </li>
     </ul>
   );

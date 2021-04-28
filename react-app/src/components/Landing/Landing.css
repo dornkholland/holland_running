@@ -9,7 +9,7 @@
 
 .hero__video {
   position: fixed;
-  top: 80px;
+  top: 60px;
   z-index: -99;
   object-fit: cover;
   width: 100%;

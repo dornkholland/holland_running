@@ -4,7 +4,7 @@ import video from "./landing2.mp4";
 const Hero = () => {
   return (
     <div className="hero">
-      <video playsinline autoPlay muted loop className="hero__video">
+      <video playsInline muted autoPlay loop className="hero__video">
         <source src={video} type="video/mp4" />
       </video>
       <div className="hero__cover"></div>

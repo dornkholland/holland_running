@@ -33,7 +33,7 @@ const NavbarNoAuth = ({ setHamburger, setModalIsOpen, setModalType }) => {
       MuiAccordionSummary: {
         // Name of the rule
         root: {
-          height: "50px",
+          height: "40px",
           padding: 0,
           minHeight: "0px",
           "&$expanded": {
