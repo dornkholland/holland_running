@@ -8,7 +8,6 @@ const AvailabilityForm = () => {
   const date = useSelector((state) => state.calendar.date);
   const handleAvailability = async (e) => {
     e.preventDefault();
-    console.log(e.target.value);
     const data = await dispatch(addAppointment(date, e.target.value));
   };
   return (

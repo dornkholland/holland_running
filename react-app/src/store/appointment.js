@@ -8,9 +8,21 @@ const setAppointment = (appointment) => {
 };
 
 export const addAppointment = (date, time) => async (dispatch) => {
-  dispatch(setAppointment(date, time));
-  //return date;
-  return;
+  const response = await fetch(`/api/appointments/`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      date,
+      time,
+    }),
+  });
+  const data = await response.json();
+  if (!data.errors) {
+    dispatch(setAppointment(date, time));
+  }
+  return data;
 };
 
 const initialState = { appointments: {} };
