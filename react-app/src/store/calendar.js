@@ -7,12 +7,12 @@ const setDate = (date) => {
   };
 };
 
-const initialState = { date: {} };
-
 export const updateDate = (date) => async (dispatch) => {
   dispatch(setDate(date));
   return date;
 };
+
+const initialState = { date: new Date() };
 
 const calendarReducer = (state = initialState, action) => {
   let newState = JSON.parse(JSON.stringify(state));

@@ -1,7 +1,16 @@
 import React from "react";
 import "./AvailabilityForm.css";
+import { useDispatch, useSelector } from "react-redux";
+import { addAppointment } from "../../../store/appointment";
 
 const AvailabilityForm = () => {
+  const dispatch = useDispatch();
+  const date = useSelector((state) => state.calendar.date);
+  const handleAvailability = async (e) => {
+    e.preventDefault();
+    console.log(e.target.value);
+    const data = await dispatch(addAppointment(date, e.target.value));
+  };
   return (
     <>
       <h1>Set your availability here: </h1>
@@ -10,10 +19,14 @@ const AvailabilityForm = () => {
           {[...Array(24).keys()].map((hour) => (
             <li key={hour}>
               <div>
-                <button>{hour}:00</button>
+                <button onClick={handleAvailability} value={`${hour}:00`}>
+                  {hour}:00
+                </button>
               </div>
               <div>
-                <button>{hour}:30</button>
+                <button onClick={handleAvailability} value={`${hour}:30`}>
+                  {hour}:30
+                </button>
               </div>
             </li>
           ))}
