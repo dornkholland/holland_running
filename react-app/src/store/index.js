@@ -2,10 +2,14 @@ import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 import authReducer from "./auth";
 import videoReducer from "./video";
+import appointmentReducer from "./appointment";
+import calendarReducer from "./calendar";
 
 const rootReducer = combineReducers({
   auth: authReducer,
   video: videoReducer,
+  appointment: appointmentReducer,
+  calendar: calendarReducer,
 });
 
 let enhancer;
