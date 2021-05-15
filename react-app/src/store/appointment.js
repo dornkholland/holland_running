@@ -7,7 +7,7 @@ const setAppointment = (appointment) => {
   };
 };
 
-export const addAppointment = (date, time) => async (dispatch) => {
+export const addAppointment = (date, time, offset) => async (dispatch) => {
   const response = await fetch(`/api/appointments/`, {
     method: "POST",
     headers: {
@@ -16,6 +16,7 @@ export const addAppointment = (date, time) => async (dispatch) => {
     body: JSON.stringify({
       date,
       time,
+      offset,
     }),
   });
   const data = await response.json();

@@ -8,8 +8,10 @@ const AvailabilityForm = () => {
   const date = useSelector((state) => state.calendar.date);
   const handleAvailability = async (e) => {
     e.preventDefault();
-    const data = await dispatch(addAppointment(date, e.target.value));
+    const timezone = date.getTimezoneOffset() - (date.getTimezoneOffset() % 30);
+    const data = await dispatch(addAppointment(date, e.target.value, timezone));
   };
+  if (!date) return null;
   return (
     <>
       <h1>Set your availability here: </h1>
