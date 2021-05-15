@@ -8,6 +8,10 @@ appointment_routes = Blueprint("appointments", __name__)
 @login_required
 def add_appointment():
     print(request.json)
-    print(request.json["date"])
-    print(request.json["time"])
+    print(request.json["date"].split("T")[0])
+    dateString = request.json["date"].split("T")[0].split("-")
+    date = list(map(lambda x: int(x), dateString))
+    timeString = request.json["time"].split(":")
+    time = list(map(lambda x: int(x), timeString))
+    print (datetime.datetime(*date, *time))
     return {'here': 'here'};
