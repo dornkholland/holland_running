@@ -6,6 +6,16 @@ import datetime
 
 appointment_routes = Blueprint("appointments", __name__)
 
+
+@appointment_routes.route("/<date>/<offset>/")
+@login_required
+def get_availability(date, offset):
+    appointments = Appointment.query.filter(Appointment.availability == True).all
+    print('here')
+    print('here', appointments)
+    # add timedelta logic here
+
+
 @appointment_routes.route("/", methods=["POST"])
 @login_required
 def add_appointment():

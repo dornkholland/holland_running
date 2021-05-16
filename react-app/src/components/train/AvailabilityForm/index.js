@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./AvailabilityForm.css";
 import { useDispatch, useSelector } from "react-redux";
 import { addAppointment } from "../../../store/appointment";
