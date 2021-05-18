@@ -14,7 +14,8 @@ const PersonalizedTraining = () => {
     console.log(e);
   };
   const date = useSelector((state) => state.calendar.date);
-  const timezone = date.getTimezoneOffset() - (date.getTimezoneOffset() % 30);
+  const tDate = new Date();
+  const timezone = tDate.getTimezoneOffset() - (tDate.getTimezoneOffset() % 30);
 
   useEffect(async () => {
     if (date) {
@@ -24,7 +25,11 @@ const PersonalizedTraining = () => {
 
   return (
     <>
-      <Calendar onChange={handleCalendar} value={date} />
+      <Calendar
+        onChange={handleCalendar}
+        value={date}
+        minDate={new Date(tDate.getTime() + 86400000 * 2)}
+      />
       <AvailabilityForm />
     </>
   );
