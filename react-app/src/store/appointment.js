@@ -1,10 +1,11 @@
 const LOAD_AVAILABILITY = "appointment/loadAvailability";
-const SET_APPOINTMENT = "appointment/setAppointment";
+const SET_AVAILABILITY = "appointment/setAvailability";
+const REMOVE_AVAILABILITY = "appointment/removeAvailability";
 
-const setAppointment = (appointment) => {
+const setAvailability = (availability) => {
   return {
-    type: SET_APPOINTMENT,
-    payload: appointment,
+    type: SET_AVAILABILITY,
+    payload: availability,
   };
 };
 
@@ -15,7 +16,14 @@ const loadAvailability = (availability) => {
   };
 };
 
-export const addAppointment = (date, time, offset) => async (dispatch) => {
+const deleteAvailability = (availability) => {
+  return {
+    type: REMOVE_AVAILABILITY,
+    payload: availability,
+  };
+};
+
+export const addAvailability = (date, time, offset) => async (dispatch) => {
   const response = await fetch(`/api/appointments/`, {
     method: "POST",
     headers: {
@@ -29,7 +37,7 @@ export const addAppointment = (date, time, offset) => async (dispatch) => {
   });
   const data = await response.json();
   if (!data.errors) {
-    dispatch(setAppointment(date, time));
+    dispatch(setAvailability(data));
   }
   return data;
 };
@@ -44,20 +52,54 @@ export const getAvailability = (date, offset) => async (dispatch) => {
   });
   const data = await response.json();
   if (!data.errors) {
-    dispatch(loadAvailability(date));
+    dispatch(loadAvailability(data));
   }
   return data;
 };
 
-const initialState = { appointments: {} };
+export const removeAvailability = (date, time, offset) => async (dispatch) => {
+  const response = await fetch(`/api/appointments/`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      date,
+      time,
+      offset,
+    }),
+  });
+  const data = await response.json();
+  if (!data.errors) {
+    dispatch(deleteAvailability(data));
+  }
+  return data;
+};
+
+const initialState = {
+  appointments: {
+    available: null,
+    booked: null,
+  },
+};
 
 const appointmentReducer = (state = initialState, action) => {
   let newState = JSON.parse(JSON.stringify(state));
   switch (action.type) {
     case LOAD_AVAILABILITY:
+      newState.appointments.available = action.payload;
+      return newState;
+    case SET_AVAILABILITY:
+      newState.appointments.available = {
+        ...newState.appointments.available,
+        ...action.payload,
+      };
+      return newState;
+    case REMOVE_AVAILABILITY:
       console.log(action.payload);
-    case SET_APPOINTMENT:
-      console.log(action.payload);
+      for (let key in action.payload) {
+        delete newState.appointments.available[key];
+      }
       return newState;
     default:
       return state;
