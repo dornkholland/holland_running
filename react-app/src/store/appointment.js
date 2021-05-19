@@ -1,11 +1,27 @@
 const LOAD_AVAILABILITY = "appointment/loadAvailability";
 const SET_AVAILABILITY = "appointment/setAvailability";
 const REMOVE_AVAILABILITY = "appointment/removeAvailability";
+const SET_BOOKING = "appointment/setBooking";
+const LOAD_BOOKING = "appointment/loadBooking";
 
 const setAvailability = (availability) => {
   return {
     type: SET_AVAILABILITY,
     payload: availability,
+  };
+};
+
+const loadBooking = (bookings) => {
+  return {
+    type: LOAD_BOOKING,
+    payload: bookings,
+  };
+};
+
+const setBooking = (appointment) => {
+  return {
+    type: SET_BOOKING,
+    payload: appointment,
   };
 };
 
@@ -52,7 +68,8 @@ export const getAvailability = (date, offset) => async (dispatch) => {
   });
   const data = await response.json();
   if (!data.errors) {
-    dispatch(loadAvailability(data));
+    dispatch(loadAvailability(data.available));
+    dispatch(loadBooking(data.booked));
   }
   return data;
 };
@@ -72,6 +89,26 @@ export const removeAvailability = (date, time, offset) => async (dispatch) => {
   const data = await response.json();
   if (!data.errors) {
     dispatch(deleteAvailability(data));
+  }
+  return data;
+};
+
+export const bookAppointment = (date, time, offset) => async (dispatch) => {
+  const response = await fetch(`/api/appointments/`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      date,
+      time,
+      offset,
+    }),
+  });
+  const data = await response.json();
+  if (!data.errors) {
+    dispatch(deleteAvailability(data));
+    dispatch(setBooking(data));
   }
   return data;
 };
@@ -96,10 +133,20 @@ const appointmentReducer = (state = initialState, action) => {
       };
       return newState;
     case REMOVE_AVAILABILITY:
-      console.log(action.payload);
       for (let key in action.payload) {
         delete newState.appointments.available[key];
       }
+      return newState;
+
+    case LOAD_BOOKING:
+      newState.appointments.booked = action.payload;
+      return newState;
+
+    case SET_BOOKING:
+      newState.appointments.booked = {
+        ...newState.appointments.booked,
+        ...action.payload,
+      };
       return newState;
     default:
       return state;

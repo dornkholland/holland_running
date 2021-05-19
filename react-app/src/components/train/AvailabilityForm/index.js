@@ -12,6 +12,7 @@ const AvailabilityForm = () => {
   const available = useSelector(
     (state) => state.appointment.appointments.available
   );
+  const booked = useSelector((state) => state.appointment.appointments.booked);
   const timezone = date.getTimezoneOffset() - (date.getTimezoneOffset() % 30);
   const handleAvailability = async (e) => {
     e.preventDefault();
@@ -25,7 +26,7 @@ const AvailabilityForm = () => {
       removeAvailability(date, e.target.value, timezone)
     );
   };
-  if (!date || available === null) return null;
+  if (!date || available === null || booked === null) return null;
   return (
     <>
       <h1>Set your availability here: </h1>
@@ -33,36 +34,53 @@ const AvailabilityForm = () => {
         <ul className="availForm">
           {[...Array(24).keys()].map((hour) => (
             <li key={hour}>
-              <div>
-                {available[`0${hour}:00`] || available[`${hour}:00`] ? (
-                  <button
-                    onClick={handleRemoval}
-                    value={`${hour}:00`}
-                    style={{ color: "green" }}
-                  >
-                    {hour}:00
-                  </button>
-                ) : (
-                  <button onClick={handleAvailability} value={`${hour}:00`}>
-                    {hour}:00
-                  </button>
-                )}
-              </div>
-              <div>
-                {available[`0${hour}:30`] || available[`${hour}:30`] ? (
-                  <button
-                    onClick={handleRemoval}
-                    value={`${hour}:30`}
-                    style={{ color: "green" }}
-                  >
-                    {hour}:30
-                  </button>
-                ) : (
-                  <button onClick={handleAvailability} value={`${hour}:30`}>
-                    {hour}:30
-                  </button>
-                )}
-              </div>
+              {booked[`0${hour}:00`] || booked[`${hour}:00`] ? (
+                <button className="blue">{hour}:00</button>
+              ) : (
+                <div>
+                  {available[`0${hour}:00`] || available[`${hour}:00`] ? (
+                    <button
+                      onClick={handleRemoval}
+                      value={`${hour}:00`}
+                      style={{ color: "green" }}
+                      className="green"
+                    >
+                      {hour}:00
+                    </button>
+                  ) : (
+                    <button
+                      onClick={handleAvailability}
+                      value={`${hour}:00`}
+                      className="red"
+                    >
+                      {hour}:00
+                    </button>
+                  )}
+                </div>
+              )}
+              {booked[`0${hour}:30`] || booked[`${hour}:30`] ? (
+                <button className="blue">{hour}:30</button>
+              ) : (
+                <div>
+                  {available[`0${hour}:30`] || available[`${hour}:30`] ? (
+                    <button
+                      onClick={handleRemoval}
+                      value={`${hour}:30`}
+                      className="green"
+                    >
+                      {hour}:30
+                    </button>
+                  ) : (
+                    <button
+                      onClick={handleAvailability}
+                      value={`${hour}:30`}
+                      className="red"
+                    >
+                      {hour}:30
+                    </button>
+                  )}
+                </div>
+              )}
             </li>
           ))}
         </ul>
