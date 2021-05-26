@@ -34,7 +34,9 @@ def get_availability(date, offset):
     booked = list(filter(lambda x: x['date_time'] >= datetime.datetime.now(), appointments))
     return_2 = {}
     for appointment in booked:
-        return_2[appointment["date_time"].strftime("%H:%M")] = appointment
+        if return_2 == {}:
+            return_2[appointment["date_time"].strftime("%Y-%m-%d")] = {}
+        return_2[appointment["date_time"].strftime("%Y-%m-%d")] = {**return_2[appointment["date_time"].strftime("%Y-%m-%d")], appointment["date_time"].strftime("%H:%M"): appointment}
 
     return {"available": {**return_dict},
             "booked": {**return_2},

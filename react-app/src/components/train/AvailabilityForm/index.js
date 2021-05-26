@@ -9,6 +9,8 @@ import {
 const AvailabilityForm = () => {
   const dispatch = useDispatch();
   const date = useSelector((state) => state.calendar.date);
+  const formattedDate = date.toISOString().substring(0, 10);
+
   const available = useSelector(
     (state) => state.appointment.appointments.available
   );
@@ -26,6 +28,10 @@ const AvailabilityForm = () => {
       removeAvailability(date, e.target.value, timezone)
     );
   };
+  const handleBooked = async (e) => {
+    e.preventDefault();
+  };
+
   if (!date || available === null || booked === null) return null;
   return (
     <>
@@ -34,8 +40,12 @@ const AvailabilityForm = () => {
         <ul className="availForm">
           {[...Array(24).keys()].map((hour) => (
             <li key={hour}>
-              {booked[`0${hour}:00`] || booked[`${hour}:00`] ? (
-                <button className="blue">{hour}:00</button>
+              {(booked[formattedDate] &&
+                booked[formattedDate][`0${hour}:00`]) ||
+              (booked[formattedDate] && booked[formattedDate][`${hour}:00`]) ? (
+                <button className="blue" onClick={handleBooked}>
+                  {hour}:00
+                </button>
               ) : (
                 <div>
                   {available[`0${hour}:00`] || available[`${hour}:00`] ? (
@@ -58,8 +68,12 @@ const AvailabilityForm = () => {
                   )}
                 </div>
               )}
-              {booked[`0${hour}:30`] || booked[`${hour}:30`] ? (
-                <button className="blue">{hour}:30</button>
+              {(booked[formattedDate] &&
+                booked[formattedDate][`0${hour}:30`]) ||
+              (booked[formattedDate] && booked[formattedDate][`${hour}:30`]) ? (
+                <button className="blue" onClick={handleBooked}>
+                  {hour}:30
+                </button>
               ) : (
                 <div>
                   {available[`0${hour}:30`] || available[`${hour}:30`] ? (
