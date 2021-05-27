@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import "./PersonalizedTraining.css";
 import AvailabilityForm from "../AvailabilityForm";
+import AppointmentContainer from "../AppointmentContainer";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import { useDispatch, useSelector } from "react-redux";
@@ -33,6 +34,7 @@ const PersonalizedTraining = () => {
         minDate={new Date(tDate.getTime() + 86400000 * 2)}
       />
       {user.role === "owner" ? <AvailabilityForm /> : <BookingForm />}
+      <AppointmentContainer />
     </>
   );
 };
