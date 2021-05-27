@@ -1,6 +1,6 @@
 from flask import Blueprint, request
 from flask_login import current_user, login_required
-from app.models import Appointment, db
+from app.models import Appointment, db, User
 import datetime
 
 
@@ -17,7 +17,13 @@ def get_availability(date, offset):
     def appointmentFormatter(appointment):
         updated = appointment.to_dict();
         updated["date_time"] -= datetime.timedelta(minutes = int(offset))
-        return updated;
+        return updated
+
+    def joinFormatter(appointment):
+        updated = appointmentFormatter(appointment)
+        updated['user'] = appointment.user.to_dict()
+        return updated
+
     appointments = list(map(appointmentFormatter, appointmentsQuery))
     # appointments = list(filter(lambda x: (x["date_time"] - datetime.timedelta(days=int(offset))).date() == date, appointments))
     appointments = list(filter(lambda x: x['date_time'].strftime("%Y-%m-%d") == date, appointments))
@@ -27,10 +33,10 @@ def get_availability(date, offset):
 
     # get booked appointments
     if user["role"] == "owner":
-        appointmentsQuery = Appointment.query.filter(Appointment.availability == False).all()
+        appointmentsQuery = Appointment.query.filter(Appointment.availability == False).join(User, Appointment.user_id == User.id).all()
     else:
-        appointmentsQuery = Appointment.query.filter(Appointment.user_id == user["id"]).all()
-    appointments = list(map(appointmentFormatter, appointmentsQuery))
+        appointmentsQuery = Appointment.query.filter(Appointment.user_id == user["id"]).join(User, Appointment.user_id == User.id).all()
+    appointments = list(map(joinFormatter, appointmentsQuery))
     booked = list(filter(lambda x: x['date_time'] >= datetime.datetime.now(), appointments))
     return_2 = {}
     for appointment in booked:

@@ -1,4 +1,5 @@
-from .db import db
+from .db import db 
+from app.models import User
 
 
 class Appointment(db.Model):
@@ -8,6 +9,8 @@ class Appointment(db.Model):
   date_time = db.Column(db.DateTime, nullable = False)
   availability = db.Column(db.Boolean, nullable = False)
   user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+
+  user = db.relationship(User, backref=db.backref('users'))
 
 
   def to_dict(self):
