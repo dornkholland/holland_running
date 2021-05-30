@@ -105,5 +105,6 @@ def book_appointment():
     db.session.commit()
     print(to_book.to_dict())
     return_dict = to_book.to_dict()
+    return_dict['user'] = user
     return {(return_dict["date_time"] - datetime.timedelta(minutes=data["offset"])).strftime("%H:%M") : return_dict};
 

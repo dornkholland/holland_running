@@ -9,7 +9,10 @@ import {
 const AvailabilityForm = () => {
   const dispatch = useDispatch();
   const date = useSelector((state) => state.calendar.date);
-  const formattedDate = date.toISOString().substring(0, 10);
+  const formattedDate = `${date.getFullYear()}-${
+    date.getMonth() + 1
+  }-${date.getDate()}`;
+  console.log(formattedDate);
 
   const available = useSelector(
     (state) => state.appointment.appointments.available

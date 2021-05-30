@@ -26,13 +26,12 @@ const PersonalizedTraining = () => {
     }
   }, [date]);
 
+  const minDate = new Date();
+  minDate.setDate(new Date().getDate() + 2);
+
   return (
     <>
-      <Calendar
-        onChange={handleCalendar}
-        value={date}
-        minDate={new Date(tDate.getTime() + 86400000 * 2)}
-      />
+      <Calendar onChange={handleCalendar} value={date} minDate={minDate} />
       {user.role === "owner" ? <AvailabilityForm /> : <BookingForm />}
       <AppointmentContainer />
     </>

@@ -61,8 +61,8 @@ export const addAvailability = (date, time, offset) => async (dispatch) => {
 };
 
 export const getAvailability = (date, offset) => async (dispatch) => {
-  var day = moment(date.toISOString()).format("YYYY-MM-DD");
-  const response = await fetch(`/api/appointments/${day}/${offset}/`, {
+  date = date.toISOString().split("T")[0];
+  const response = await fetch(`/api/appointments/${date}/${offset}/`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
