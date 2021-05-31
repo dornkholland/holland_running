@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import "./AppointmentContainer.css";
 
 const AppointmentContainer = () => {
   const booked = useSelector((state) => state.appointment.appointments.booked);
@@ -7,20 +8,25 @@ const AppointmentContainer = () => {
   if (!booked) return null;
   else
     return (
-      <>
-        <h1>Booked Appointments:</h1>
+      <div>
+        <h1 className="booked__header">Booked Appointments:</h1>
         <ul>
           {Object.values(booked).map((time) =>
-            Object.values(time).map((appointment) => (
-              <li>
-                <h1>{appointment.date_time}</h1>
-                <h1>{appointment.user.first_name}</h1>
-                <h1>{appointment.user.last_name}</h1>
+            Object.entries(time).map(([timeKey, appointment]) => (
+              <li key={appointment.id} className="booked">
+                <h1>
+                  Appointment with {appointment.user.first_name}{" "}
+                  {appointment.user.last_name}
+                </h1>
+                <h2>
+                  {appointment.date_time.split(" ").slice(0, 4).join(" ")}
+                </h2>
+                <h2>{timeKey}</h2>
               </li>
             ))
           )}
         </ul>
-      </>
+      </div>
     );
 };
 

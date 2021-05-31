@@ -38,8 +38,11 @@ const AvailabilityForm = () => {
 
   if (!date || available === null || booked === null) return null;
   return (
-    <>
-      <h1>Set your availability here: </h1>
+    <div className="availability">
+      <h1 className="availability__header">
+        Set your availability here by choosing a date on the calendar and
+        clicking the corresponding time!
+      </h1>
       <form action="">
         <ul className="availForm">
           {[...Array(24).keys()].map((hour) => (
@@ -47,9 +50,11 @@ const AvailabilityForm = () => {
               {(booked[formattedDate] &&
                 booked[formattedDate][`0${hour}:00`]) ||
               (booked[formattedDate] && booked[formattedDate][`${hour}:00`]) ? (
-                <button className="blue" onClick={handleBooked}>
-                  {hour}:00
-                </button>
+                <div>
+                  <button className="blue" onClick={handleBooked}>
+                    {hour}:00
+                  </button>
+                </div>
               ) : (
                 <div>
                   {available[`0${hour}:00`] || available[`${hour}:00`] ? (
@@ -75,9 +80,11 @@ const AvailabilityForm = () => {
               {(booked[formattedDate] &&
                 booked[formattedDate][`0${hour}:30`]) ||
               (booked[formattedDate] && booked[formattedDate][`${hour}:30`]) ? (
-                <button className="blue" onClick={handleBooked}>
-                  {hour}:30
-                </button>
+                <div>
+                  <button className="blue" onClick={handleBooked}>
+                    {hour}:30
+                  </button>
+                </div>
               ) : (
                 <div>
                   {available[`0${hour}:30`] || available[`${hour}:30`] ? (
@@ -103,7 +110,7 @@ const AvailabilityForm = () => {
           ))}
         </ul>
       </form>
-    </>
+    </div>
   );
 };
 

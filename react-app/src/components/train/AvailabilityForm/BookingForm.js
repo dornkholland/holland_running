@@ -18,24 +18,32 @@ const BookingForm = () => {
 
   if (!available) return null;
   return (
-    <ul className="availForm">
-      {Object.keys(available).length ? (
-        ((<li>Book your appointments here, just click an available slot.</li>),
-        Object.keys(available).map((appointment) => (
-          <li>
-            <button
-              className="green"
-              onClick={handleBooking}
-              value={appointment}
-            >
-              {appointment}
-            </button>
-          </li>
-        )))
-      ) : (
-        <h1>Sorry, no available times. Please check another day.</h1>
-      )}
-    </ul>
+    <div className="availability">
+      <h1 className="availability__header">
+        To book an appointment, choose an date from a calendar with an available
+        appointment, and click the appointment time below to book!
+      </h1>
+      <ul className="availForm">
+        {Object.keys(available).length ? (
+          ((
+            <li>Book your appointments here, just click an available slot.</li>
+          ),
+          Object.keys(available).map((appointment) => (
+            <li>
+              <button
+                className="green"
+                onClick={handleBooking}
+                value={appointment}
+              >
+                {appointment}
+              </button>
+            </li>
+          )))
+        ) : (
+          <h1>Sorry, no available times. Please check another day.</h1>
+        )}
+      </ul>
+    </div>
   );
 };
 
