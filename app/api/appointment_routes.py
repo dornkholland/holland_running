@@ -40,8 +40,9 @@ def get_availability(date, offset):
     booked = list(filter(lambda x: x['date_time'] >= datetime.datetime.now(), appointments))
     return_2 = {}
     for appointment in booked:
-        if return_2 == {}:
+        if appointment["date_time"].strftime("%Y-%m-%d") not in return_2:
             return_2[appointment["date_time"].strftime("%Y-%m-%d")] = {}
+            print(return_2)
         return_2[appointment["date_time"].strftime("%Y-%m-%d")] = {**return_2[appointment["date_time"].strftime("%Y-%m-%d")], appointment["date_time"].strftime("%H:%M"): appointment}
 
     return {"available": {**return_dict},
@@ -105,6 +106,11 @@ def book_appointment():
     db.session.commit()
     print(to_book.to_dict())
     return_dict = to_book.to_dict()
+    return_dict["date_time"] -= datetime.timedelta(minutes=data['offset'])
     return_dict['user'] = user
-    return {(return_dict["date_time"] - datetime.timedelta(minutes=data["offset"])).strftime("%H:%M") : return_dict};
+    print(return_dict)
+            # return_2[appointment["date_time"].strftime("%Y-%m-%d")] = {}
+        # return_2[appointment["date_time"].strftime("%Y-%m-%d")] = {**return_2[appointment["date_time"].strftime("%Y-%m-%d")], appointment["date_time"].strftime("%H:%M"): appointment}
+    # to_book["date_time"]){(return_dict["date_time"] - datetime.timedelta(minutes=data["offset"])) 
+    return {return_dict["date_time"].strftime("%Y-%m-%d") : {return_dict["date_time"].strftime("%H:%M") : return_dict}};
 

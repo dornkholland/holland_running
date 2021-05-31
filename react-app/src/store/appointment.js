@@ -135,7 +135,7 @@ const appointmentReducer = (state = initialState, action) => {
       };
       return newState;
     case REMOVE_AVAILABILITY:
-      for (let key in action.payload) {
+      for (let key in Object.values(action.payload)[0]) {
         delete newState.appointments.available[key];
       }
       return newState;
@@ -145,10 +145,18 @@ const appointmentReducer = (state = initialState, action) => {
       return newState;
 
     case SET_BOOKING:
-      newState.appointments.booked = {
-        ...newState.appointments.booked,
-        ...action.payload,
-      };
+      const parsedDate = Object.keys(action.payload)[0];
+      if (newState.appointments.booked[parsedDate]) {
+        newState.appointments.booked[parsedDate] = {
+          ...newState.appointments.booked[parsedDate],
+          ...action.payload[parsedDate],
+        };
+      } else {
+        newState.appointments.booked = {
+          ...newState.appointments.booked,
+          ...action.payload,
+        };
+      }
       return newState;
     default:
       return state;
