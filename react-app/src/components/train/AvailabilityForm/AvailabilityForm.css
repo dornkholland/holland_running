@@ -1,7 +1,43 @@
+.availability {
+  max-width: 400px;
+  padding: 10px;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .availForm {
   max-height: 400px;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  max-width: 300px;
+  width: 300px;
+}
+
+.availability__header {
+  padding: 10px;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.availForm button {
+  padding: 5px;
+  border-radius: 10px;
+  margin: 3px;
+}
+
+.availForm .red {
+  color: red;
+  border: 1px solid red;
+}
+
+.availForm .green {
+  color: green;
+  border: 1px solid green;
+}
+
+.availForm .blue {
+  color: blue;
+  border: 1px solid blue;
 }

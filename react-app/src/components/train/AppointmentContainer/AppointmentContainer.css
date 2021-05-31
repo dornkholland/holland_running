@@ -1,0 +1,19 @@
+.booked__header {
+  font-size: 20px;
+}
+
+.booked {
+  margin: 8px;
+}
+
+.booked > * {
+  margin: 3px;
+}
+
+.booked h1 {
+  font-size: 18px;
+}
+
+.booked h2 {
+  color: var(--color-1);
+}

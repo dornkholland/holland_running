@@ -1,0 +1,16 @@
+.training {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 30px;
+  justify-content: center;
+  background-color: var(--color-4);
+  min-height: calc(100vh - 60px);
+}
+
+.training > * {
+  margin: 20px;
+}
+
+.calendar {
+  height: 100%;
+}
