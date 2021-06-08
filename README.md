@@ -1,9 +1,9 @@
-This is a wordpress-style website made for my father's running business.  It includes an easy to access UI that allows distribution of running content through videos and live zoom classes.
 # Holland Running
 
 ## About / Synopsis
 
-* What is it, what does it do / Abstract
+* About
+Holland Running is a website made for my father's running business. It includes an easy to access UI that allows distribution of running content through videos and appointment scheduling for one-on-one consultation.
 * Project status: Prototype
 
 ## Table of contents
