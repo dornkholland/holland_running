@@ -21,10 +21,7 @@ Holland Running is a website made for my father's running business. It includes 
 >     * [Limitations](#limitations)
 >     * [Build](#build)
 >     * [Deploy (how to install build product)](#deploy-how-to-install-build-product)
->   * [Resources (Documentation and other links)](#resources-documentation-and-other-links)
->   * [Contributing / Reporting issues](#contributing--reporting-issues)
->   * [License](#license)
->   * [About Nuxeo](#about-nuxeo)
+
 
 ## Live Demo
 
