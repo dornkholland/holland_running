@@ -13,7 +13,6 @@ const PersonalizedTraining = () => {
   const dispatch = useDispatch();
   const handleCalendar = async (e) => {
     const date = await dispatch(updateDate(e));
-    console.log(e);
   };
   const date = useSelector((state) => state.calendar.date);
   const user = useSelector((state) => state.auth.user);

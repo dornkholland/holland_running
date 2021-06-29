@@ -42,7 +42,6 @@ def get_availability(date, offset):
     for appointment in booked:
         if appointment["date_time"].strftime("%Y-%m-%d") not in return_2:
             return_2[appointment["date_time"].strftime("%Y-%m-%d")] = {}
-            print(return_2)
         return_2[appointment["date_time"].strftime("%Y-%m-%d")] = {**return_2[appointment["date_time"].strftime("%Y-%m-%d")], appointment["date_time"].strftime("%H:%M"): appointment}
 
     return {"available": {**return_dict},
@@ -89,7 +88,6 @@ def delete_appointment():
 @login_required
 def book_appointment():
     data = request.json
-    print(data)
     dateString = request.json["date"].split("T")[0].split("-")
     date = list(map(lambda x: int(x), dateString))
     timeString = request.json["time"].split(":")
@@ -101,14 +99,11 @@ def book_appointment():
 
     to_book = Appointment.query.filter(Appointment.date_time == dateData).first()
     to_book.availability = False
-    print (to_book.availability)
     to_book.user_id = user["id"]
     db.session.commit()
-    print(to_book.to_dict())
     return_dict = to_book.to_dict()
     return_dict["date_time"] -= datetime.timedelta(minutes=data['offset'])
     return_dict['user'] = user
-    print(return_dict)
             # return_2[appointment["date_time"].strftime("%Y-%m-%d")] = {}
         # return_2[appointment["date_time"].strftime("%Y-%m-%d")] = {**return_2[appointment["date_time"].strftime("%Y-%m-%d")], appointment["date_time"].strftime("%H:%M"): appointment}
     # to_book["date_time"]){(return_dict["date_time"] - datetime.timedelta(minutes=data["offset"])) 

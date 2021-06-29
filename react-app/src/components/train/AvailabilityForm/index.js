@@ -13,7 +13,6 @@ const AvailabilityForm = () => {
     "0" +
     (date.getMonth() + 1)
   ).slice(-2)}-${("0" + date.getDate()).slice(-2)}`;
-  console.log(formattedDate);
 
   const available = useSelector(
     (state) => state.appointment.appointments.available

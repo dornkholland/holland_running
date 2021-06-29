@@ -45,7 +45,6 @@ export const signup = (first_name, last_name, email, password) => async (
     }),
   });
   const data = await response.json();
-  console.log(data);
   if (!data.errors) {
     dispatch(setUser(data));
   }
@@ -54,7 +53,6 @@ export const signup = (first_name, last_name, email, password) => async (
 
 //login user thunk action
 export const login = (email, password) => async (dispatch) => {
-  console.log(email, password);
   const response = await fetch("/api/auth/login/", {
     method: "POST",
     headers: {
@@ -66,7 +64,6 @@ export const login = (email, password) => async (dispatch) => {
     }),
   });
   const data = await response.json();
-  console.log(data);
   if (!data.errors) {
     dispatch(setUser(data));
   }

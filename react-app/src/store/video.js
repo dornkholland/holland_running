@@ -54,7 +54,6 @@ export const deleteVideo = (video) => async (dispatch) => {
 };
 
 export const editVideo = (formData, id) => async (dispatch) => {
-  console.log(id);
   const response = await fetch(`/api/videos/${id}/`, {
     method: "PUT",
     body: formData,

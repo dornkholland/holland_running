@@ -16,7 +16,6 @@ const SignUpForm = ({ setModalIsOpen }) => {
     e.preventDefault();
     if (password === repeatPassword) {
       const user = await dispatch(signup(firstName, lastName, email, password));
-      console.log(user.errors);
       if (!user.errors) {
         //setAuthenticated(true);
         setModalIsOpen(false);

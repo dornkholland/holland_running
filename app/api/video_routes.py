@@ -79,10 +79,8 @@ def get_videos(videoType):
 @login_required
 def delete_video(videoId):
     videoUrl = request.get_json()['thumbnail_url']
-    print(videoUrl.split("/")[-1])
     fileName = videoUrl.split('/')[-1]
     s3_delete = delete_file_from_s3(fileName)
-    print(s3_delete)
     if s3_delete["response"]:
         video = Video.query.filter(Video.id == videoId).delete()
         db.session.commit()
@@ -107,7 +105,6 @@ def update_video(videoId):
     if form.validate_on_submit():
         form.populate_obj(video)
         db.session.commit()
-        print(video)
         return {"video": video.to_dict()}
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
         

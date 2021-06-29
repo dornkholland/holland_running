@@ -48,7 +48,6 @@ def delete_file_from_s3(filename):
             Key=filename
         )
     except Exception as e:
-        print(e)
         return {'errors': str(e)}
     return {"response": "ok"}
 

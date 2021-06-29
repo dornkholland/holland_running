@@ -20,7 +20,6 @@ const VideoPage = () => {
     );
     const data = await response.json();
     video = data.video;
-    console.log(video);
     setIsLoaded(true);
   }, []);
 
